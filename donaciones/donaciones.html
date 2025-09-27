@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Donaciones — FUNDENOR AQAB'AL'</title>
+  <link rel="stylesheet" href="../css/donaciones.css"> <!-- ruta CSS -->
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a class="logo" href="../index.html">
+      <img src="../img/logo.png" alt="Logo FUNDENOR">
+      <span>FUNDENOR AQAB'AL'</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../index.html#inicio">Inicio</a></li>
+        <li><a href="../index.html#programas">Programas</a></li>
+        <li><a href="../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="main-content">
+
+    <!-- HERO -->
+    <section class="hero-donaciones" style="background-image: url('../img/donaciones-hero.jpg');">
+      <div class="hero-content">
+        <h1>Apoya nuestros programas</h1>
+        <p>Con tu aporte podemos cambiar vidas en nuestras comunidades.</p>
+      </div>
+    </section>
+
+    <!-- TIPOS DE DONACIÓN -->
+    <section class="section donaciones">
+      <h2>Opciones de Donación</h2>
+      <div class="donaciones-grid">
+        <div class="donacion-card">
+          <img src="../img/icons/individual.webp" alt="Donación Individual">
+          <h3>Donación Individual</h3>
+          <p>Contribuye de forma personal y directa a nuestros programas.</p>
+          <a href="#" class="btn-donar">Donar Ahora</a>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/empresarial.png" alt="Donación Empresarial">
+          <h3>Donación Empresarial</h3>
+          <p>Tu empresa puede apoyar a nuestras comunidades mediante alianzas estratégicas.</p>
+          <a href="#" class="btn-donar">Donar Ahora</a>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/causa.png" alt="Donación por Causa">
+          <h3>Donación por Causa</h3>
+          <p>Selecciona la causa que deseas apoyar y haz tu contribución.</p>
+          <a href="#causas" class="btn-donar">Ver Causas</a>
+        </div>
+      </div>
+
+      <!-- DONACIÓN POR CAUSA -->
+      <div id="causas" class="causa-grid">
+        <div class="causa-card">
+          <img src="../img/icons/comunitarias.png" alt="Beca">
+          <h4>1 Beca<br>Q.XX</h4>
+          <a href="#" class="btn-donar">Donar</a>
+        </div>
+        <div class="causa-card">
+          <img src="../img/icons/nutricion.png" alt="Alimentos">
+          <h4>Alimentos para 1 niño<br>Q.XX</h4>
+          <a href="#" class="btn-donar">Donar</a>
+        </div>
+        <div class="causa-card">
+          <img src="../img/icons/infraestructura.png" alt="Infraestructura">
+          <h4>Mejoras de infraestructura<br>Q.XX</h4>
+          <a href="#" class="btn-donar">Donar</a>
+        </div>
+        <div class="causa-card">
+          <img src="../img/icons/sexual.png" alt="Métodos Anticonceptivos">
+          <h4>Métodos Anticonceptivos<br>Q.XX</h4>
+          <a href="#" class="btn-donar">Donar</a>
+        </div>
+        <div class="causa-card">
+          <img src="../img/icons/carrera.png" alt="Carrera 10k">
+          <h4>Carrera 10k para cambiar historias<br>Q.XX</h4>
+          <a href="#" class="btn-donar">Donar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL DONACIÓN -->
+    <div id="modalDonacion" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Datos de Tarjeta</h2>
+        <form id="formPago">
+          <label for="nombre">Nombre en la tarjeta</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Juan Pérez" required>
+
+          <label for="numero">Número de tarjeta</label>
+          <input type="text" id="numero" name="numero" placeholder="1234 5678 9012 3456" required>
+
+          <label for="mes">Mes de expiración</label>
+          <input type="text" id="mes" name="mes" placeholder="MM" required>
+
+          <label for="anio">Año de expiración</label>
+          <input type="text" id="anio" name="anio" placeholder="AAAA" required>
+
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" name="cvv" placeholder="123" required>
+
+          <button type="submit" class="btn-donar">Donar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="program-footer">
+      <p>&copy; 2025 FUNDENOR AQAB'AL' — Todos los derechos reservados</p>
+    </footer>
+
+  </div>
+
+  <!-- JS externo -->
+  <script src="../js/donaciones.js"></script>
+
+</body>
+</html>
