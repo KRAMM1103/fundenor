@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin · FUNDENOR AQAB'AL' — Panel de Control</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="img/logo.png" alt="logo" class="brand__logo">
+        <span class="brand__name">FUNDENOR AQAB'AL'</span>
+      </div>
+
+      <nav class="menu">
+        <a class="menu__item active" href="#"><span class="ico">🏠</span><span>Dashboard</span></a>
+        <a class="menu__item" href="#"><span class="ico">💳</span><span>Donaciones</span></a>
+        <a class="menu__item" href="#"><span class="ico">📁</span><span>Programas</span></a>
+        <a class="menu__item" href="#"><span class="ico">👥</span><span>Donantes</span></a>
+        <a class="menu__item" href="#"><span class="ico">📊</span><span>Reportes</span></a>
+        <a class="menu__item" href="#"><span class="ico">⚙️</span><span>Configuración</span></a>
+      </nav>
+
+      <div class="sidebar__bottom">
+        <button id="collapseBtn" class="btn-ghost">⇤ Colapsar</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar__left">
+          <button id="toggleSidebar" class="btn-ghost">☰</button>
+          <h1 class="page-title">Panel de Control</h1>
+        </div>
+
+        <div class="topbar__right">
+          <div class="search">
+            <input type="search" placeholder="Buscar donante, transacción, programa..." aria-label="buscar">
+            <button class="btn-ghost">🔎</button>
+          </div>
+
+          <div class="actions">
+            <button class="btn">+ Nueva donación</button>
+            <button class="avatar" title="Usuario">MF</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="content">
+        <!-- Overview cards -->
+        <div class="cards">
+          <article class="card card--accent">
+            <div class="card-head">
+              <h3>Total recaudado</h3>
+              <span class="muted">Últimos 30 días</span>
+            </div>
+            <div class="card-body">
+              <div class="big">Q 124,560</div>
+              <div class="small">+14% respecto al periodo anterior</div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Donantes</h3>
+            <div class="card-body">
+              <div class="big">3,420</div>
+              <div class="small">Donantes activos</div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Donaciones pendientes</h3>
+            <div class="card-body">
+              <div class="big">12</div>
+              <div class="small">Requieren verificación</div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Campañas activas</h3>
+            <div class="card-body">
+              <div class="big">5</div>
+              <div class="small">En curso</div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Middle: Transactions + charts (placeholder) -->
+        <div class="layout">
+          <div class="panel panel--wide">
+            <div class="panel__head">
+              <h2>Donaciones recientes</h2>
+              <div class="controls">
+                <select aria-label="filtrar programa">
+                  <option value="">Todos los programas</option>
+                  <option>Alimentación</option>
+                  <option>Salud</option>
+                  <option>Higiene</option>
+                  <option>Educación</option>
+                  <option>Apoyo</option>
+                </select>
+                <input type="date" aria-label="desde">
+                <input type="date" aria-label="hasta">
+                <button class="btn-ghost">Exportar CSV</button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Donante</th>
+                    <th>Monto</th>
+                    <th>Programa</th>
+                    <th>Metodo</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- ejemplo de fila -->
+                  <tr>
+                    <td>#2025-0012</td>
+                    <td>María López</td>
+                    <td>Q 250.00</td>
+                    <td>Alimentación</td>
+                    <td>Tarjeta</td>
+                    <td>2025-09-20</td>
+                    <td><span class="badge badge--success">Aprobado</span></td>
+                    <td><button class="btn-ghost btn-sm" data-open-detail="María López">Ver</button></td>
+                  </tr>
+
+                  <tr>
+                    <td>#2025-0011</td>
+                    <td>Juan Pérez</td>
+                    <td>Q 100.00</td>
+                    <td>Salud</td>
+                    <td>PayPal</td>
+                    <td>2025-09-19</td>
+                    <td><span class="badge badge--warning">Pendiente</span></td>
+                    <td><button class="btn-ghost btn-sm" data-open-detail="Juan Pérez">Ver</button></td>
+                  </tr>
+
+                  <tr>
+                    <td>#2025-0010</td>
+                    <td>Ana Gómez</td>
+                    <td>Q 500.00</td>
+                    <td>Educación</td>
+                    <td>Transferencia</td>
+                    <td>2025-09-18</td>
+                    <td><span class="badge badge--success">Aprobado</span></td>
+                    <td><button class="btn-ghost btn-sm" data-open-detail="Ana Gómez">Ver</button></td>
+                  </tr>
+
+                  <!-- más filas de ejemplo -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right column: Quick stats & recent activity -->
+          <aside class="panel panel--narrow">
+            <div class="panel__section">
+              <h3>Resumen por programa</h3>
+              <ul class="prog-list">
+                <li><strong>Alimentación</strong> <span class="muted">Q 52,000</span></li>
+                <li><strong>Salud</strong> <span class="muted">Q 20,400</span></li>
+                <li><strong>Higiene</strong> <span class="muted">Q 10,000</span></li>
+                <li><strong>Educación</strong> <span class="muted">Q 32,160</span></li>
+                <li><strong>Apoyo</strong> <span class="muted">Q 10,000</span></li>
+              </ul>
+            </div>
+
+            <div class="panel__section">
+              <h3>Actividad reciente</h3>
+              <ul class="activity">
+                <li><span class="dot"></span> Nueva donación Q 250 — María L.</li>
+                <li><span class="dot"></span> Donación pendiente Q 100 — Juan P.</li>
+                <li><span class="dot"></span> 2 donaciones offline registradas</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+      </section>
+
+      <!-- off-canvas detail (simula panel de ver donante/transacción) -->
+      <div id="detailPanel" class="detail-panel" aria-hidden="true">
+        <button id="closeDetail" class="detail-panel__close">✕</button>
+        <div class="detail-panel__body">
+          <h3 id="detailName">Detalle del donante</h3>
+          <dl>
+            <dt>Nombre</dt><dd id="detailNameVal">María López</dd>
+            <dt>Correo</dt><dd id="detailEmailVal">maria@example.com</dd>
+            <dt>Monto</dt><dd id="detailAmountVal">Q 250.00</dd>
+            <dt>Programa</dt><dd id="detailProgramVal">Alimentación</dd>
+            <dt>Estado</dt><dd id="detailStatusVal">Aprobado</dd>
+            <dt>Fecha</dt><dd id="detailDateVal">2025-09-20</dd>
+          </dl>
+          <div class="detail-actions">
+            <button class="btn">Marcar como verificado</button>
+            <button class="btn-ghost">Generar recibo PDF</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Minimal JS para interacción del diseño -->
+  <script>
+    // Toggle sidebar collapse
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const collapseBtn = document.getElementById('collapseBtn');
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('collapsed');
+      document.body.classList.toggle('sidebar-collapsed');
+    }
+    if(toggleBtn) toggleBtn.addEventListener('click', toggleSidebar);
+    if(collapseBtn) collapseBtn.addEventListener('click', toggleSidebar);
+
+    // Open detail panel
+    const detailPanel = document.getElementById('detailPanel');
+    const closeDetail = document.getElementById('closeDetail');
+    document.querySelectorAll('[data-open-detail]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-open-detail') || 'Donante';
+        document.getElementById('detailName').textContent = 'Detalle — ' + name;
+        document.getElementById('detailNameVal').textContent = name;
+        // aquí podrías cargar más datos vía fetch al backend
+        detailPanel.setAttribute('aria-hidden', 'false');
+        detailPanel.classList.add('open');
+      });
+    });
+    if(closeDetail) closeDetail.addEventListener('click', () => {
+      detailPanel.setAttribute('aria-hidden', 'true');
+      detailPanel.classList.remove('open');
+    });
+  </script>
+</body>
+</html>

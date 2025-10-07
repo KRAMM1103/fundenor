@@ -409,3 +409,17 @@ footer {
   font-size: 1rem;
   color: #555;
 }
+
+.btn-donar {
+  background-color: #ff9800;  /* Color del botón */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.btn-donar:hover {
+  background-color: #e68900; /* tono más oscuro al pasar el cursor */
+}

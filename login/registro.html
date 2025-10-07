@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro — FUNDENOR AQAB'AL'</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/donaciones.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a class="logo" href="../index.html">
+      <img src="../img/logo.png" alt="Logo FUNDENOR">
+      <span>FUNDENOR AQAB'AL'</span>
+    </a>
+  </header>
+
+  <main class="section" style="padding-top: 100px; max-width: 400px; margin: 0 auto;">
+    <h2 style="text-align:center; color: var(--primary); margin-bottom: 30px;">Registro de Donante</h2>
+    <form id="registerForm" style="display: flex; flex-direction: column; gap: 12px;">
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
+      <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+      <input type="password" id="password" name="password" placeholder="Contraseña" required>
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirmar Contraseña" required>
+      <button type="submit" class="btn-donar">Registrarme</button>
+    </form>
+    <p style="text-align:center; margin-top: 15px;">¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+  </main>
+
+<script src="../js/auth.js"></script>
+
+</body>
+</html>
