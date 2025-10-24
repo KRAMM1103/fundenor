@@ -135,3 +135,66 @@ footer.program-footer { background: var(--primary); color: #fff; padding: 24px 1
   color: #333;
   cursor: pointer;
 }
+
+/* ==== PAYPAL BUTTONS ==== */
+.paypal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Limita el tamaño del iframe de PayPal */
+.paypal-container iframe {
+  transform: scale(0.85); /* Ajusta el tamaño general */
+  transform-origin: center;
+}
+
+/* Si se ve muy pequeño o muy grande, ajusta el scale: */
+@media (max-width: 600px) {
+  .paypal-container iframe {
+    transform: scale(0.75);
+  }
+}
+
+/* --- Estilo del input de donación (monto) --- */
+.donacion-card .donation-amount,
+.causa-card .donation-amount {
+  width: 100%;
+  max-width: 120px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+/* --- Botón de Paggo --- */
+.paggo-btn {
+  display: inline-block;
+  background-color: #ff6600; /* naranja Paggo */
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-size: 14px;
+}
+
+.paggo-btn:hover {
+  background-color: #e65c00; /* un tono más oscuro al pasar el mouse */
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.paggo-btn:disabled {
+  background-color: #ffa366;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

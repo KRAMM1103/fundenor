@@ -5,29 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Admin · FUNDENOR AQAB'AL' — Panel de Control</title>
   <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+<script src="js/admin-dashboard.js"></script>
 <body>
   <div class="app">
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
-      <div class="brand">
-        <img src="img/logo.png" alt="logo" class="brand__logo">
-        <span class="brand__name">FUNDENOR AQAB'AL'</span>
-      </div>
-
-      <nav class="menu">
-        <a class="menu__item active" href="#"><span class="ico">🏠</span><span>Dashboard</span></a>
-        <a class="menu__item" href="#"><span class="ico">💳</span><span>Donaciones</span></a>
-        <a class="menu__item" href="#"><span class="ico">📁</span><span>Programas</span></a>
-        <a class="menu__item" href="#"><span class="ico">👥</span><span>Donantes</span></a>
-        <a class="menu__item" href="#"><span class="ico">📊</span><span>Reportes</span></a>
-        <a class="menu__item" href="#"><span class="ico">⚙️</span><span>Configuración</span></a>
-      </nav>
-
-      <div class="sidebar__bottom">
-        <button id="collapseBtn" class="btn-ghost">⇤ Colapsar</button>
-      </div>
-    </aside>
+   <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="img/logo.png" class="brand__logo" alt="Logo">
+      <span class="brand__name">FUNDENOR AQAB'AL'</span>
+    </div>
+    <nav class="menu">
+      <a href="admin.html" class="menu__item active"><span class="ico">💰</span><span>Donaciones</span></a>
+      <a href="becas.html" class="menu__item"><span class="ico">🎓</span><span>Becas</span></a>
+      <a href="seguimiento.html" class="menu__item"><span class="ico">📊</span><span>Seguimiento</span></a>
+      <a href="usuarios.html" class="menu__item"><span class="ico">👥</span><span>Usuarios</span></a>
+    </nav>
+    <div class="sidebar__bottom">
+      <a href="logout.html" class="menu__item"><span class="ico">🔒</span><span>Cerrar sesión</span></a>
+    </div>
+  </aside>
 
     <!-- MAIN -->
     <main class="main">
@@ -61,15 +59,14 @@
               <span class="muted">Últimos 30 días</span>
             </div>
             <div class="card-body">
-              <div class="big">Q 124,560</div>
-              <div class="small">+14% respecto al periodo anterior</div>
+              <div class="big">Q.0</div>
             </div>
           </article>
 
           <article class="card">
             <h3>Donantes</h3>
             <div class="card-body">
-              <div class="big">3,420</div>
+              <div class="big">0</div>
               <div class="small">Donantes activos</div>
             </div>
           </article>
@@ -77,7 +74,7 @@
           <article class="card">
             <h3>Donaciones pendientes</h3>
             <div class="card-body">
-              <div class="big">12</div>
+              <div class="big">0</div>
               <div class="small">Requieren verificación</div>
             </div>
           </article>
@@ -85,7 +82,7 @@
           <article class="card">
             <h3>Campañas activas</h3>
             <div class="card-body">
-              <div class="big">5</div>
+              <div class="big">0</div>
               <div class="small">En curso</div>
             </div>
           </article>
@@ -126,39 +123,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- ejemplo de fila -->
-                  <tr>
-                    <td>#2025-0012</td>
-                    <td>María López</td>
-                    <td>Q 250.00</td>
-                    <td>Alimentación</td>
-                    <td>Tarjeta</td>
-                    <td>2025-09-20</td>
-                    <td><span class="badge badge--success">Aprobado</span></td>
-                    <td><button class="btn-ghost btn-sm" data-open-detail="María López">Ver</button></td>
-                  </tr>
 
-                  <tr>
-                    <td>#2025-0011</td>
-                    <td>Juan Pérez</td>
-                    <td>Q 100.00</td>
-                    <td>Salud</td>
-                    <td>PayPal</td>
-                    <td>2025-09-19</td>
-                    <td><span class="badge badge--warning">Pendiente</span></td>
-                    <td><button class="btn-ghost btn-sm" data-open-detail="Juan Pérez">Ver</button></td>
-                  </tr>
-
-                  <tr>
-                    <td>#2025-0010</td>
-                    <td>Ana Gómez</td>
-                    <td>Q 500.00</td>
-                    <td>Educación</td>
-                    <td>Transferencia</td>
-                    <td>2025-09-18</td>
-                    <td><span class="badge badge--success">Aprobado</span></td>
-                    <td><button class="btn-ghost btn-sm" data-open-detail="Ana Gómez">Ver</button></td>
-                  </tr>
 
                   <!-- más filas de ejemplo -->
                 </tbody>
@@ -171,20 +136,18 @@
             <div class="panel__section">
               <h3>Resumen por programa</h3>
               <ul class="prog-list">
-                <li><strong>Alimentación</strong> <span class="muted">Q 52,000</span></li>
-                <li><strong>Salud</strong> <span class="muted">Q 20,400</span></li>
-                <li><strong>Higiene</strong> <span class="muted">Q 10,000</span></li>
-                <li><strong>Educación</strong> <span class="muted">Q 32,160</span></li>
-                <li><strong>Apoyo</strong> <span class="muted">Q 10,000</span></li>
+                <li><strong>Alimentación</strong> <span class="muted">Q 0</span></li>
+                <li><strong>Salud</strong> <span class="muted">Q 0</span></li>
+                <li><strong>Higiene</strong> <span class="muted">Q 0</span></li>
+                <li><strong>Educación</strong> <span class="muted">Q 0</span></li>
+                <li><strong>Apoyo</strong> <span class="muted">Q 0</span></li>
               </ul>
             </div>
 
             <div class="panel__section">
               <h3>Actividad reciente</h3>
               <ul class="activity">
-                <li><span class="dot"></span> Nueva donación Q 250 — María L.</li>
-                <li><span class="dot"></span> Donación pendiente Q 100 — Juan P.</li>
-                <li><span class="dot"></span> 2 donaciones offline registradas</li>
+                <!--ejemplo-->
               </ul>
             </div>
           </aside>

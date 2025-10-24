@@ -1,0 +1,257 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #f4f6f8;
+  color: #222;
+  display: flex;
+}
+
+/* Sidebar */
+#sidebar {
+  width: 220px;
+  background: #004aad;
+  color: #fff;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px 10px;
+}
+
+#sidebar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+#sidebar .logo img {
+  height: 40px;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 15px;
+}
+
+.sidebar-nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.sidebar-nav a:hover {
+  background: #003580;
+}
+
+/* Main content */
+#main-dashboard {
+  margin-left: 240px;
+  padding: 40px 30px;
+  width: calc(100% - 240px);
+}
+
+#main-dashboard header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+#main-dashboard h1 {
+  font-size: 2rem;
+  color: #004aad;
+}
+
+#main-dashboard #btnAddBeca {
+  background: #ffcc00;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#main-dashboard #btnAddBeca:hover {
+  background: #e6b800;
+}
+
+/* Tabla */
+.table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.table-section th, .table-section td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.table-section thead {
+  background: #004aad;
+  color: #fff;
+}
+
+.table-section tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.table-section button.edit {
+  background: #007b5e;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.table-section button.delete {
+  background: #d9534f;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.table-section button.edit:hover {
+  background: #006048;
+}
+
+.table-section button.delete:hover {
+  background: #c9302c;
+}
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1500;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 8% auto;
+  padding: 20px 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #004aad;
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.modal-content input, .modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button.btn-modal {
+  margin-top: 20px;
+  padding: 10px 18px;
+  background: #ffcc00;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-content button.btn-modal:hover {
+  background: #e6b800;
+}
+
+.modal .close {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.registro-becadas {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.registro-becadas h2 {
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+form fieldset {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+form legend {
+  font-weight: 600;
+  color: var(--primary);
+  padding: 0 8px;
+}
+
+form label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.btn-guardar {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-guardar:hover {
+  background: #00337a;
+}

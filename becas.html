@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Becas — FUNDENOR AQAB'AL'</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="img/logo.png" class="brand__logo" alt="Logo">
+      <span class="brand__name">FUNDENOR AQAB'AL'</span>
+    </div>
+    <nav class="menu">
+      <a href="admin.html" class="menu__item"><span class="ico">💰</span><span>Donaciones</span></a>
+      <a href="#" class="menu__item active"><span class="ico">🎓</span><span>Becas</span></a>
+      <a href="seguimiento.html" class="menu__item"><span class="ico">📊</span><span>Seguimiento</span></a>
+      <a href="usuarios.html" class="menu__item"><span class="ico">👥</span><span>Usuarios</span></a>
+    </nav>
+    <div class="sidebar__bottom">
+      <a href="logout.html" class="menu__item"><span class="ico">🔒</span><span>Cerrar sesión</span></a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar__left">
+        <h1 class="page-title">Becas</h1>
+      </div>
+      <div class="topbar__right">
+        <button class="btn" id="btnNewBecada">Registrar Nueva Becada</button>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- CARDS RESUMEN -->
+      <div class="cards">
+        <div class="card">
+          <h3>Total Becadas</h3>
+          <div class="big" id="totalBecadas">0</div>
+        </div>
+        <div class="card">
+          <h3>Becadas Comunitaria</h3>
+          <div class="big" id="becadasComunitaria">0</div>
+        </div>
+        <div class="card">
+          <h3>Becadas Residencia</h3>
+          <div class="big" id="becadasResidencia">0</div>
+        </div>
+        <div class="card">
+          <h3>Insumos Entregados</h3>
+          <div class="big" id="insumosEntregados">0</div>
+        </div>
+      </div>
+
+      <div class="filters">
+        <select id="filterTipoBeca">
+          <option value="">Tipo de beca</option>
+          <option value="Comunitaria">Comunitaria</option>
+          <option value="Residencia">Residencia</option>
+        </select>
+
+        <select id="filterGrado">
+          <option value="">Grado</option>
+          <option value="Primero Primaria">Primero Primaria</option>
+          <option value="Segundo Primaria">Segundo Primaria</option>
+          <option value="Tercero Primaria">Tercero Primaria</option>
+          <option value="Cuarto Primaria">Cuarto Primaria</option>
+          <option value="Quinto Primaria">Quinto Primaria</option>
+          <option value="Sexto Primaria">Sexto Primaria</option>
+          <option value="Primero Básico">Primero Básico</option>
+          <option value="Segundo Básico">Segundo Básico</option>
+          <option value="Tercero Básico">Tercero Básico</option>
+          <option value="Cuarto Diversificado">Cuarto Diversificado</option>
+          <option value="Quinto Diversificado">Quinto Diversificado</option>
+          <option value="Sexto Diversificado">Sexto Diversificado</option>
+        </select>
+
+        <select id="filterDepartamento">
+          <option value="">Departamento</option>
+          <option value="Alta Verapaz">Alta Verapaz</option>
+          <option value="Baja Verapaz">Baja Verapaz</option>
+        </select>
+
+        <select id="filterMunicipio">
+          <option value="">Municipio</option>
+        </select>
+
+        <button id="btnExportExcel" class="btn">Exportar a Excel</button>
+      </div>
+
+      <!-- TABLA DE BECADAS -->
+      <div class="panel">
+        <div class="panel__head">
+          <h2>Listado de Becadas</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="tableBecadas">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Fecha Nac.</th>
+                <th>Edad</th>
+                <th>Grado</th>
+                <th>Tipo de Beca</th>
+                <th>Comunidad</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Filas se agregan dinámicamente desde JS/backend -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</div>
+
+<!-- MODAL NUEVA BECADA -->
+<div class="detail-panel" id="modalBecada">
+  <button class="detail-panel__close" id="closeModal">&times;</button>
+  <div class="detail-panel__body">
+    <h2>Registrar Nueva Becada</h2>
+    <form id="formBecada">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="fechaNacimiento">Fecha de nacimiento</label>
+      <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+
+      <label for="grado">Grado escolar</label>
+      <select id="grado" name="grado" required>
+        <option value="">Grado</option>
+          <option value="Primero Primaria">Primero Primaria</option>
+          <option value="Segundo Primaria">Segundo Primaria</option>
+          <option value="Tercero Primaria">Tercero Primaria</option>
+          <option value="Cuarto Primaria">Cuarto Primaria</option>
+          <option value="Quinto Primaria">Quinto Primaria</option>
+          <option value="Sexto Primaria">Sexto Primaria</option>
+          <option value="Primero Básico">Primero Básico</option>
+          <option value="Segundo Básico">Segundo Básico</option>
+          <option value="Tercero Básico">Tercero Básico</option>
+          <option value="Cuarto Diversificado">Cuarto Diversificado</option>
+          <option value="Quinto Diversificado">Quinto Diversificado</option>
+          <option value="Sexto Diversificado">Sexto Diversificado</option>
+      </select>
+
+      <label for="tipoBeca">Tipo de beca</label>
+      <select id="tipoBeca" name="tipoBeca" required>
+        <option value="">Selecciona</option>
+        <option value="Comunitaria">Comunitaria</option>
+        <option value="Residencia">Residencia</option>
+      </select>
+
+      <label for="departamento">Departamento</label>
+      <select id="departamento" name="departamento" required>
+        <option value="">Selecciona</option>
+        <option value="Alta Verapaz">Alta Verapaz</option>
+        <option value="Baja Verapaz">Baja Verapaz</option>
+      </select>
+
+      <label for="municipio">Municipio</label>
+      <select id="municipio" name="municipio" required>
+        <option value="">Selecciona un departamento primero</option>
+      </select>
+
+      <label for="comunidad">Comunidad</label>
+      <input type="text" id="comunidad" name="comunidad" required>
+
+      <label for="tallaPlayera">Talla de Playera</label>
+      <select id="tallaPlayera" name="tallaPlayera" required>
+        <option value="">Selecciona</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+
+      <label for="tallaZapatos">Talla Zapatos</label>
+      <input type="text" id="tallaZapatos" name="tallaZapatos">
+
+      <label for="necesidades">Principales necesidades educativas</label>
+      <textarea id="necesidades" name="necesidades" rows="3"></textarea>
+
+      <div class="detail-actions">
+        <button type="submit" class="btn">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/becas.js"></script>
+
+</body>
+</html>

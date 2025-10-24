@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguimiento Becadas — FUNDENOR AQAB'AL'</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="img/logo.png" class="brand__logo" alt="Logo">
+      <span class="brand__name">FUNDENOR AQAB'AL'</span>
+    </div>
+    <nav class="menu">
+      <a href="admin.html" class="menu__item"><span class="ico">💰</span><span>Donaciones</span></a>
+      <a href="becas.html" class="menu__item"><span class="ico">🎓</span><span>Becas</span></a>
+      <a href="seguimiento.html" class="menu__item active"><span class="ico">📊</span><span>Seguimiento</span></a>
+      <a href="usuarios.html" class="menu__item"><span class="ico">👥</span><span>Usuarios</span></a>
+    </nav>
+    <div class="sidebar__bottom">
+      <a href="logout.html" class="menu__item"><span class="ico">🔒</span><span>Cerrar sesión</span></a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar__left">
+        <h1 class="page-title">Seguimiento Becadas</h1>
+      </div>
+      <div class="topbar__right">
+        <button class="btn" id="btnNewSeguimiento">Agregar Seguimiento</button>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- CARDS RESUMEN -->
+      <div class="cards">
+        <div class="card">
+          <h3>Total Seguimientos</h3>
+          <div class="big" id="totalSeguimientos">0</div>
+        </div>
+        <div class="card">
+          <h3>Meses Registrados</h3>
+          <div class="big" id="mesesRegistrados">0</div>
+        </div>
+        <div class="card">
+          <h3>Datos Finales</h3>
+          <div class="big" id="datosFinalesRegistrados">0</div>
+        </div>
+      </div>
+
+      <!-- SELECCIÓN DE BECADA -->
+      <div class="filters">
+        <label for="selectBecada">Seleccionar Becada:</label>
+        <select id="selectBecada">
+          <option value="">-- Selecciona una becada --</option>
+          <!-- Opciones se llenan desde JS -->
+        </select>
+      </div>
+
+      <!-- TABLA DE SEGUIMIENTO MENSUAL -->
+      <div class="panel">
+        <div class="panel__head">
+          <h2>Seguimiento Mensual</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="tableMensual">
+            <thead>
+              <tr>
+                <th>Mes</th>
+                <th>Principal Necesidad</th>
+                <th>Sesión 1</th>
+                <th>Sesión 2</th>
+                <th>Sesión 3</th>
+                <th>Sesión 4</th>
+                <th>Sesión 5</th>
+                <th>Sesión 6</th>
+                <th>Sesión 7</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Filas generadas dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLA DE DATOS FINALES -->
+      <div class="panel">
+        <div class="panel__head">
+          <h2>Datos Finales</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="tableFinales">
+            <thead>
+              <tr>
+                <th>Año</th>
+                <th>Insumos Recibidos</th>
+                <th>Estado Ciclo</th>
+                <th>Papelería Completa</th>
+                <th>Solicitud Continuidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Filas generadas dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</div>
+
+<!-- MODAL SEGUIMIENTO MENSUAL -->
+<div class="detail-panel" id="modalMensual">
+  <button class="detail-panel__close" id="closeModalMensual">&times;</button>
+  <div class="detail-panel__body">
+    <h2>Agregar Seguimiento Mensual</h2>
+    <form id="formMensual">
+      <label for="mes">Mes:</label>
+
+      <select id="filterGrado" required>
+          <option value="">Grado</option>
+          <option value="Enero">Enero</option>
+          <option value="Febrero">Febrero</option>
+          <option value="Marzo">Marzo</option>
+          <option value="Abril">Abril</option>
+          <option value="Mayo">Mayo</option>
+          <option value="Junio">Junio</option>
+          <option value="Julio">Julio</option>
+          <option value="Agosto">Agosto</option>
+          <option value="Septiembre">Septiembre</option>
+          <option value="Octubre">Octubre</option>
+          <option value="Noviembre">Noviembre</option>
+          <option value="Diciembre">Diciembre</option>
+        </select>
+      
+      <label for="principalNecesidad">Principal Necesidad:</label>
+      <input type="text" id="principalNecesidad" required>
+
+      <fieldset>
+        <legend>Temas de Sesiones (1 a 7)</legend>
+        <input type="text" id="sesion1" placeholder="Sesión 1">
+        <input type="text" id="sesion2" placeholder="Sesión 2">
+        <input type="text" id="sesion3" placeholder="Sesión 3">
+        <input type="text" id="sesion4" placeholder="Sesión 4">
+        <input type="text" id="sesion5" placeholder="Sesión 5">
+        <input type="text" id="sesion6" placeholder="Sesión 6">
+        <input type="text" id="sesion7" placeholder="Sesión 7">
+      </fieldset>
+
+      <div class="detail-actions">
+        <button type="submit" class="btn">Guardar Seguimiento Mensual</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL DATOS FINALES -->
+<div class="detail-panel" id="modalFinales">
+  <button class="detail-panel__close" id="closeModalFinales">&times;</button>
+  <div class="detail-panel__body">
+    <h2>Agregar Datos Finales</h2>
+    <form id="formFinales">
+      <label for="anio">Año:</label>
+      <input type="number" id="anio" required>
+
+      <label for="insumosRecibidos">Insumos Recibidos:</label>
+      <input type="text" id="insumosRecibidos" placeholder="Útiles escolares, tenis, uniforme">
+
+      <label for="estadoCiclo">Estado Ciclo Académico:</label>
+      <select id="estadoCiclo" required>
+        <option value="Aprobada">Aprobada</option>
+        <option value="Reprobada">Reprobada</option>
+      </select>
+
+      <label for="papeleriaCompleta">Papelería Completa:</label>
+      <select id="papeleriaCompleta" required>
+        <option value="true">Sí</option>
+        <option value="false">No</option>
+      </select>
+
+      <label for="solicitudContinuidad">Solicitud de Continuidad:</label>
+      <select id="solicitudContinuidad" required>
+        <option value="true">Sí</option>
+        <option value="false">No</option>
+      </select>
+
+      <div class="detail-actions">
+        <button type="submit" class="btn">Guardar Datos Finales</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
+<script src="/js/seguimiento.js"></script>
+</body>
+</html>

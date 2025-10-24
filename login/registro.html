@@ -6,6 +6,7 @@
   <title>Registro — FUNDENOR AQAB'AL'</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/donaciones.css">
+  <link rel="stylesheet" href="../css/auth.css">
 </head>
 <body>
 
@@ -19,17 +20,20 @@
 
   <main class="section" style="padding-top: 100px; max-width: 400px; margin: 0 auto;">
     <h2 style="text-align:center; color: var(--primary); margin-bottom: 30px;">Registro de Donante</h2>
-    <form id="registerForm" style="display: flex; flex-direction: column; gap: 12px;">
-      <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
-      <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
-      <input type="password" id="password" name="password" placeholder="Contraseña" required>
-      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirmar Contraseña" required>
-      <button type="submit" class="btn-donar">Registrarme</button>
+    <form id="registerForm">
+      <input type="text" id="nombre" placeholder="Nombre completo" required>
+      <input type="email" id="email" placeholder="Correo" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <input type="password" id="confirmPassword" placeholder="Confirma tu contraseña" required>
+      <button type="submit">Registrarse</button>
     </form>
-    <p style="text-align:center; margin-top: 15px;">¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+
+    <p style="text-align:center; margin-top: 15px;">
+      ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+    </p>
   </main>
 
-<script src="../js/auth.js"></script>
+  <script src="../js/auth.js"></script>
 
 </body>
 </html>
