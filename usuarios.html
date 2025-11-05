@@ -8,6 +8,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="img/logo.png" alt="Logo FUNDENOR AQAB'AL'">
+        <span>FUNDENOR AQAB'AL'</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#programas">Programas ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="programas/programa1.html">Alimentación y Nutrición</a></li>
+            <li><a href="programas/programa2.html">Salud</a></li>
+            <li><a href="programas/programa3.html">Higiene y Hogar</a></li>
+            <li><a href="programas/programa4.html">Educación</a></li>
+            <li><a href="programas/programa5.html">Entrega de Alimentos</a></li>
+          </ul>
+        </li>
+        <li><a href="donaciones/donaciones.html" class="btn-donar">Donar</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const role = localStorage.getItem("role");
+    
+    if (role !== "admin") {
+      alert("No tienes permiso para acceder a esta página");
+      window.location.href = "index.html"; // o donde prefieras
+    }
+  });
+</script>
+
 <div class="app">
 
   <!-- SIDEBAR -->
@@ -22,9 +57,6 @@
       <a href="seguimiento.html" class="menu__item"><span class="ico">📊</span><span>Seguimiento</span></a>
       <a href="#" class="menu__item active"><span class="ico">👥</span><span>Usuarios</span></a>
     </nav>
-    <div class="sidebar__bottom">
-      <a href="logout.html" class="menu__item"><span class="ico">🔒</span><span>Cerrar sesión</span></a>
-    </div>
   </aside>
 
   <!-- MAIN -->
@@ -114,7 +146,7 @@
     </form>
   </div>
 </div>
-
+<script src="/js/auth.js"></script>
 <script src="/js/usuarios.js"></script>
 
 </body>

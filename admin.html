@@ -5,27 +5,55 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Admin · FUNDENOR AQAB'AL' — Panel de Control</title>
   <link rel="stylesheet" href="css/admin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<script src="js/admin-dashboard.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const role = localStorage.getItem("role");
+    
+    if (role !== "admin") {
+      alert("No tienes permiso para acceder a esta página");
+      window.location.href = "index.html";
+    }
+  });
+</script>
 <body>
-  <div class="app">
-   <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <img src="img/logo.png" class="brand__logo" alt="Logo">
-      <span class="brand__name">FUNDENOR AQAB'AL'</span>
-    </div>
-    <nav class="menu">
-      <a href="admin.html" class="menu__item active"><span class="ico">💰</span><span>Donaciones</span></a>
-      <a href="becas.html" class="menu__item"><span class="ico">🎓</span><span>Becas</span></a>
-      <a href="seguimiento.html" class="menu__item"><span class="ico">📊</span><span>Seguimiento</span></a>
-      <a href="usuarios.html" class="menu__item"><span class="ico">👥</span><span>Usuarios</span></a>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="img/logo.png" alt="Logo FUNDENOR AQAB'AL'">
+        <span>FUNDENOR AQAB'AL'</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#programas">Programas ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="programas/programa1.html">Alimentación y Nutrición</a></li>
+            <li><a href="programas/programa2.html">Salud</a></li>
+            <li><a href="programas/programa3.html">Higiene y Hogar</a></li>
+            <li><a href="programas/programa4.html">Educación</a></li>
+            <li><a href="programas/programa5.html">Entrega de Alimentos</a></li>
+          </ul>
+        </li>
+        <li><a href="donaciones/donaciones.html" class="btn-donar">Donar</a></li>
+      </ul>
     </nav>
-    <div class="sidebar__bottom">
-      <a href="logout.html" class="menu__item"><span class="ico">🔒</span><span>Cerrar sesión</span></a>
-    </div>
-  </aside>
+  </header>
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="img/logo.png" class="brand__logo" alt="Logo">
+        <span class="brand__name">FUNDENOR AQAB'AL'</span>
+      </div>
+      <nav class="menu">
+        <a href="admin.html" class="menu__item active"><span class="ico">💰</span><span>Donaciones</span></a>
+        <a href="becas.html" class="menu__item"><span class="ico">🎓</span><span>Becas</span></a>
+        <a href="seguimiento.html" class="menu__item"><span class="ico">📊</span><span>Seguimiento</span></a>
+        <a href="usuarios.html" class="menu__item"><span class="ico">👥</span><span>Usuarios</span></a>
+      </nav>
+    </aside>
 
     <!-- MAIN -->
     <main class="main">
@@ -35,13 +63,11 @@
           <button id="toggleSidebar" class="btn-ghost">☰</button>
           <h1 class="page-title">Panel de Control</h1>
         </div>
-
         <div class="topbar__right">
           <div class="search">
             <input type="search" placeholder="Buscar donante, transacción, programa..." aria-label="buscar">
             <button class="btn-ghost">🔎</button>
           </div>
-
           <div class="actions">
             <button class="btn">+ Nueva donación</button>
             <button class="avatar" title="Usuario">MF</button>
@@ -51,7 +77,6 @@
 
       <!-- CONTENT -->
       <section class="content">
-        <!-- Overview cards -->
         <div class="cards">
           <article class="card card--accent">
             <div class="card-head">
@@ -88,7 +113,6 @@
           </article>
         </div>
 
-        <!-- Middle: Transactions + charts (placeholder) -->
         <div class="layout">
           <div class="panel panel--wide">
             <div class="panel__head">
@@ -107,7 +131,6 @@
                 <button class="btn-ghost">Exportar CSV</button>
               </div>
             </div>
-
             <div class="table-wrap">
               <table class="table">
                 <thead>
@@ -122,16 +145,11 @@
                     <th>Acción</th>
                   </tr>
                 </thead>
-                <tbody>
-
-
-                  <!-- más filas de ejemplo -->
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
           </div>
 
-          <!-- Right column: Quick stats & recent activity -->
           <aside class="panel panel--narrow">
             <div class="panel__section">
               <h3>Resumen por programa</h3>
@@ -146,16 +164,13 @@
 
             <div class="panel__section">
               <h3>Actividad reciente</h3>
-              <ul class="activity">
-                <!--ejemplo-->
-              </ul>
+              <ul class="activity"></ul>
             </div>
           </aside>
         </div>
-
       </section>
 
-      <!-- off-canvas detail (simula panel de ver donante/transacción) -->
+      <!-- off-canvas detail -->
       <div id="detailPanel" class="detail-panel" aria-hidden="true">
         <button id="closeDetail" class="detail-panel__close">✕</button>
         <div class="detail-panel__body">
@@ -174,41 +189,10 @@
           </div>
         </div>
       </div>
-
     </main>
   </div>
 
-  <!-- Minimal JS para interacción del diseño -->
-  <script>
-    // Toggle sidebar collapse
-    const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggleSidebar');
-    const collapseBtn = document.getElementById('collapseBtn');
-
-    function toggleSidebar() {
-      sidebar.classList.toggle('collapsed');
-      document.body.classList.toggle('sidebar-collapsed');
-    }
-    if(toggleBtn) toggleBtn.addEventListener('click', toggleSidebar);
-    if(collapseBtn) collapseBtn.addEventListener('click', toggleSidebar);
-
-    // Open detail panel
-    const detailPanel = document.getElementById('detailPanel');
-    const closeDetail = document.getElementById('closeDetail');
-    document.querySelectorAll('[data-open-detail]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const name = btn.getAttribute('data-open-detail') || 'Donante';
-        document.getElementById('detailName').textContent = 'Detalle — ' + name;
-        document.getElementById('detailNameVal').textContent = name;
-        // aquí podrías cargar más datos vía fetch al backend
-        detailPanel.setAttribute('aria-hidden', 'false');
-        detailPanel.classList.add('open');
-      });
-    });
-    if(closeDetail) closeDetail.addEventListener('click', () => {
-      detailPanel.setAttribute('aria-hidden', 'true');
-      detailPanel.classList.remove('open');
-    });
-  </script>
+  <script src="/js/auth.js"></script>
+  <script src="js/admin-dashboard.js"></script>
 </body>
 </html>

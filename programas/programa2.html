@@ -4,153 +4,212 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Salud — FUNDENOR AQAB'AL'</title>
-
-  <!-- estilo propio para programas -->
   <link rel="stylesheet" href="../css/programas.css">
 </head>
+
 <body>
   <!-- NAVBAR -->
-  <header class="navbar">
-  <a class="logo" href="../index.html">
-    <img src="../img/logo.png" alt="Logo FUNDENOR">
-    <span>FUNDENOR AQAB'AL'</span>
-  </a>
-
-   <nav>
-    <button class="nav-toggle" aria-label="Abrir menú">☰</button>
-    <ul class="nav-links">
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="../index.html#quienes">Quiénes Somos</a></li>
-      <li><a href="../index.html#contacto">Contacto</a></li>
-
-      <!-- MENÚ PROGRAMAS -->
-      <li class="dropdown">
-        <a href="#">Programas ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="programa1.html">Alimentación y Nutrición</a></li>
-          <li><a href="programa2.html">Salud</a></li>
-          <li><a href="programa3.html">Higiene y Hogar</a></li>
-          <li><a href="programa4.html">Educación</a></li>
-          <li><a href="programa5.html">Entrega de Alimentos</a></li>
-        </ul>
-      </li>
-
-      <li><a class="nav-cta" href="../donaciones/donaciones.html">Donar</a></li>
-    </ul>
-  </nav>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../img/logo.png" alt="Logo FUNDENOR AQAB'AL'">
+        <span>FUNDENOR AQAB'AL'</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#programas">Programas ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="programa1.html">Alimentación y Nutrición</a></li>
+            <li><a href="programa2.html">Salud</a></li>
+            <li><a href="programa3.html">Higiene y Hogar</a></li>
+            <li><a href="programa4.html">Educación</a></li>
+            <li><a href="programa5.html">Entrega de Alimentos</a></li>
+          </ul>
+        </li>
+        <li><a href="../donaciones/donaciones.html" class="btn-donar">Donar</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="main-content">
+  <main class="main-content">
+
     <!-- HERO -->
-    <section class="hero" style="background-image: url('../img/programa2-hero.jpg');">
+    <section class="hero" style="background-image: url('../img/prog2.png');">
       <div class="hero-content">
         <h1>Salud</h1>
         <p>Buscamos el bienestar físico de las familias mediante acceso a servicios médicos, agua segura y planificación familiar.</p>
-        <a class="btn" href="#tks">Ver áreas</a>
+        <a class="btn" href="#areas">Ver áreas</a>
       </div>
     </section>
 
-    <!-- Descripción -->
-    <section id="descripcion" class="section bg-light">
-      <h2>Descripción General</h2>
-      <p>
-        Buscamos el bienestar físico de las familias. Nos enfocamos en proporcionar acceso a servicios 
-        médicos esenciales, garantizar agua potable segura y promover la planificación familiar. Facilitamos 
-        el acceso a métodos de planificación familiar.
-      </p>
+    <!-- DESCRIPCIÓN GENERAL -->
+    <section class="program-section">
+      <div class="program-content">
+        <h2>Descripción General</h2>
+        <p>
+          Nos enfocamos en proporcionar acceso a servicios médicos esenciales, garantizar agua potable segura 
+          y promover la planificación familiar. Facilitamos métodos de planificación familiar y capacitación 
+          en salud preventiva para mejorar la calidad de vida de las comunidades.
+        </p>
+      </div>
     </section>
 
-    <!-- Menu TKS -->
-    <section id="tks" class="section bg-light">
+    <!-- ÁREAS DE TRABAJO -->
+    <section id="areas" class="areas-section">
       <h2>Áreas de trabajo</h2>
-      <div class="programas-grid">
-        <a class="card" href="#jornada"><img class="icon" src="../img/icons/jornada.png" alt=""><div>Jornadas Médicas</div></a>
-        <a class="card" href="#sexual"><img class="icon" src="../img/icons/sexual.png" alt=""><div>Salud Sexual Reproductiva</div></a>
-        <a class="card" href="#filtros"><img class="icon" src="../img/icons/filtros.png" alt=""><div>Filtros de Agua</div></a>
+      <div class="areas-grid">
+        <a class="card" href="#jornada"><img src="../img/icons/jornada.png" alt=""><div>Jornadas Médicas</div></a>
+        <a class="card" href="#sexual"><img src="../img/icons/sexual.png" alt=""><div>Salud Sexual Reproductiva</div></a>
+        <a class="card" href="#filtros"><img src="../img/icons/filtros.png" alt=""><div>Filtros de Agua</div></a>
       </div>
     </section>
 
-    <!-- Jornada Médicas -->
-    <section id="jornada" class="section bg-light">
-      <h2>Jornadas Médicas</h2>
+    <!-- JORNADAS MÉDICAS -->
+    <section id="jornada" class="program-section">
+      <div class="program-content">
+        <h2>Jornadas Médicas</h2>
+        <p>
+          Realizamos jornadas médicas en comunidades rurales, ofreciendo atención y medicamentos gratuitos. 
+          Contamos con médicos especializados en ginecología, pediatría, odontología y medicina general, 
+          asegurando un acceso integral a la salud.
+        </p>
+      </div>
+      <div class="gallery-preview">
+        <img src="../img/programa2/jornada1.png" alt="">
+        <img src="../img/programa2/jornada2.png" alt="">
+        <img src="../img/programa2/jornada3.png" alt="">
+        <img src="../img/programa2/jornada4.png" alt="">
+      </div>
+      <div class="gallery-btn-container">
+        <button class="btn-gallery" data-gallery="jornada">Ver galería</button>
+      </div>
+    </section>
+
+    <!-- SALUD SEXUAL REPRODUCTIVA -->
+    <section id="sexual" class="program-section">
+      <div class="program-content">
+        <h2>Salud Sexual Reproductiva</h2>
+        <p>
+          Brindamos educación sobre salud sexual y métodos anticonceptivos, empoderando a las mujeres y orientando 
+          a las familias para que tomen decisiones informadas sobre la planificación familiar y la salud reproductiva.
+        </p>
+      </div>
+      <div class="gallery-preview">
+        <img src="../img/programa2/sexual1.png" alt="">
+        <img src="../img/programa2/sexual2.png" alt="">
+        <img src="../img/programa2/sexual3.png" alt="">
+        <img src="../img/programa2/sexual4.png" alt="">
+      </div>
+      <div class="gallery-btn-container">
+        <button class="btn-gallery" data-gallery="sexual">Ver galería</button>
+      </div>
+    </section>
+
+    <!-- FILTROS DE AGUA -->
+    <section id="filtros" class="program-section">
+      <div class="program-content">
+        <h2>Filtros de Agua</h2>
+        <p>
+          Proveemos filtros domésticos y capacitamos en su uso correcto, garantizando agua potable segura y mejorando 
+          la salud de las familias.
+        </p>
+      </div>
+      <div class="gallery-preview">
+        <img src="../img/programa2/filtros1.png" alt="">
+        <img src="../img/programa2/filtros2.png" alt="">
+        <img src="../img/programa2/filtros3.png" alt="">
+        <img src="../img/programa2/filtros4.png" alt="">
+      </div>
+      <div class="gallery-btn-container">
+        <button class="btn-gallery" data-gallery="filtros">Ver galería</button>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="resultados">
+      <h2>Resultados al 2024</h2>
+      <div class="resultados-grid">
+        <div class="resultado-card">
+          <img src="../img/icons/jornada.png" alt="">
+          <h3>18</h3>
+          <p>Jornadas médicas rurales</p>
+        </div>
+        <div class="resultado-card">
+          <img src="../img/icons/sexual.png" alt="">
+          <h3>300</h3>
+          <p>Mujeres con acceso a educación sexual</p>
+        </div>
+        <div class="resultado-card">
+          <img src="../img/icons/filtros.png" alt="">
+          <h3>212</h3>
+          <p>Familias con filtro para purificar agua</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DONACIONES -->
+<section id="donaciones" class="section section-light">
+  <div class="section-content cta-donacion">
+    <div class="section-text">
+      <h2>¡Únete y Apoya con tu Donación!</h2>
       <p>
-        Realizamos jornadas médicas en comunidades rurales, ofreciendo servicios médicos y medicamentos gratuitos. 
-        Contamos con la colaboración de médicos extranjeros especializados en ginecología, pediatría, odontología 
-        (incluyendo extracciones dentales) y medicina general. Estas jornadas son esenciales para complementar la 
-        salud y bienestar de las familias que, debido a la lejanía y limitaciones económicas, no pueden acceder a servicios médicos.
+        Tu apoyo transforma vidas. Con tu contribución, podemos seguir llevando desarrollo, educación y bienestar
+        a las comunidades que más lo necesitan.
       </p>
-      <div class="gallery">
-        <img src="../img/programa2/jornada1.png" alt="Jornada 1">
-        <img src="../img/programa2/jornada2.png" alt="Jornada 2">
-        <img src="../img/programa2/jornada3.png" alt="Jornada 3">
-        <img src="../img/programa2/jornada4.png" alt="Jornada 4">
+      <div class="formas-donacion">
+        <div class="donacion-card">
+          <img src="../img/icons/individual.webp" alt="Donación Individual">
+          <h3>Donación Individual</h3>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/empresarial.png" alt="Donación Empresarial">
+          <h3>Donación Empresarial</h3>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/causa.png" alt="Donación por Causa">
+          <h3>Donación por Causa</h3>
+        </div>
       </div>
-    </section>
-
-    <!-- Salud Sexual Reproductiva -->
-    <section id="sexual" class="section">
-      <h2>Salud Sexual Reproductiva</h2>
-      <p>
-        Realizamos procesos de formación sobre salud sexual y enseñamos sobre métodos anticonceptivos. Nuestro objetivo 
-        es empoderar a las mujeres, pero en especial orientar a las familias para que tengan la libertad de elegir y 
-        planificar cuántos hijos desean tener. En nuestra región, hay un gran desconocimiento sobre estos temas, por lo 
-        que brindamos información clara y accesible para ayudar a las mujeres a tomar decisiones informadas sobre su 
-        salud y bienestar.
-      </p>
-      <div class="gallery">
-        <img src="../img/programa2/sexual1.png" alt="Salud Sexual 1">
-        <img src="../img/programa2/sexual2.png" alt="Salud Sexual 2">
-        <img src="../img/programa2/sexual3.png" alt="Salud Sexual 3">
-        <img src="../img/programa2/sexual4.png" alt="Salud Sexual 4">
-      </div>
-    </section>
-
-    <!-- Filtros de Agua -->
-    <section id="filtros" class="section bg-light">
-      <h2>Filtros de Agua</h2>
-      <p>
-        Compartimos filtros para purificar agua de uso doméstico, los cuales son muy prácticos y sencillos de usar. 
-        Estos filtros proporcionan acceso a agua limpia y segura. Ofrecemos también capacitación para su correcto uso 
-        y mantenimiento, asegurando así su eficacia y durabilidad.
-      </p>
-      <div class="gallery">
-        <img src="../img/programa2/filtros1.png" alt="Filtros 1">
-        <img src="../img/programa2/filtros2.png" alt="Filtros 2">
-        <img src="../img/programa2/filtros3.png" alt="Filtros 3">
-        <img src="../img/programa2/filtros4.png" alt="Filtros 4">
-      </div>
-    </section>
-
-  <!-- RESULTADOS -->
-  <section id="resultados" class="resultados">
-    <h2>Resultados al 2024</h2>
-    <div class="resultados-grid">
-      <div class="resultado-card">
-        <img src="../img/icons/jornada.png" alt="Jornadas">
-        <h3>18</h3>
-        <p>Jornadas médicas rurales</p>
-      </div>
-      <div class="resultado-card">
-        <img src="../img/icons/sexual.png" alt="Jornadas">
-        <h3>300</h3>
-        <p>Mujeres con acceso a educación sexual</p>
-      </div>
-      <div class="resultado-card">
-        <img src="../img/icons/filtros.png" alt="Filtros">
-        <h3>212</h3>
-        <p>Familias con filtro para purificar agua</p>
-      </div>
+      <a href="../donaciones/donaciones.html" class="btn btn-donar">¡Dona Ahora!</a>
     </div>
-  </section>
+    <div class="section-image">
+      <img src="../img/prog2.png" alt="Personas beneficiadas">
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="program-footer">
       <p>&copy; 2025 FUNDENOR AQAB'AL' — Todos los derechos reservados</p>
     </footer>
+  </main>
+
+  <!-- MODAL PARA GALERÍA -->
+  <div id="galleryModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
   </div>
 
+  <!-- JS -->
+  <script src="../js/sidebar.js"></script>
   <script src="../js/programas.js"></script>
-  <script src="js/main.js"></script>
   <script src="../js/auth.js"></script>
+  <script>
+    // ----- MODAL DE GALERÍA -----
+    const modal = document.getElementById("galleryModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.getElementsByClassName("close")[0];
+
+    document.querySelectorAll(".gallery-preview img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      });
+    });
+
+    closeBtn.onclick = () => (modal.style.display = "none");
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+  </script>
 </body>
 </html>

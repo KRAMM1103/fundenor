@@ -12,19 +12,28 @@
 <body>
 
   <!-- NAVBAR -->
-  <header class="navbar">
-    <a class="logo" href="../index.html">
-      <img src="../img/logo.png" alt="Logo FUNDENOR">
-      <span>FUNDENOR AQAB'AL'</span>
-    </a>
-    <nav>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../img/logo.png" alt="Logo FUNDENOR AQAB'AL'">
+        <span>FUNDENOR AQAB'AL'</span>
+      </div>
       <ul class="nav-links">
-        <li><a href="../index.html#inicio">Inicio</a></li>
-        <li><a href="../index.html#programas">Programas</a></li>
-        <li><a href="../index.html#contacto">Contacto</a></li>
+        <li><a href="../index.html">Inicio</a></li>
+        
+        <li class="dropdown">
+          <a href="#programas">Programas ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="../programas/programa1.html">Alimentación y Nutrición</a></li>
+            <li><a href="../programas/programa2.html">Salud</a></li>
+            <li><a href="../programas/programa3.html">Higiene y Hogar</a></li>
+            <li><a href="../programas/programa4.html">Educación</a></li>
+            <li><a href="../programas/programa5.html">Entrega de Alimentos</a></li>
+          </ul>
+        </li>
+        <li><a href="../donaciones/donaciones.html" class="btn-donar">Donar</a></li>
       </ul>
     </nav>
-    <div id="navSesion" style="display: inline-block; margin-left: 20px;"></div>
   </header>
 
   <div class="main-content">

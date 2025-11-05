@@ -4,87 +4,143 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ayuda Humanitaria — FUNDENOR AQAB'AL'</title>
-
-  <!-- estilo propio para programas -->
   <link rel="stylesheet" href="../css/programas.css">
 </head>
+
 <body>
   <!-- NAVBAR -->
-<header class="navbar">
-  <a class="logo" href="../index.html">
-    <img src="../img/logo.png" alt="Logo FUNDENOR">
-    <span>FUNDENOR AQAB'AL'</span>
-  </a>
-
-   <nav>
-    <button class="nav-toggle" aria-label="Abrir menú">☰</button>
-    <ul class="nav-links">
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="../index.html#quienes">Quiénes Somos</a></li>
-      <li><a href="../index.html#contacto">Contacto</a></li>
-
-      <!-- MENÚ PROGRAMAS -->
-      <li class="dropdown">
-        <a href="#">Programas ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="programa1.html">Alimentación y Nutrición</a></li>
-          <li><a href="programa2.html">Salud</a></li>
-          <li><a href="programa3.html">Higiene y Hogar</a></li>
-          <li><a href="programa4.html">Educación</a></li>
-          <li><a href="programa5.html">Entrega de Alimentos</a></li>
-        </ul>
-      </li>
-
-      <li><a class="nav-cta" href="../donaciones/donaciones.html">Donar</a></li>
-    </ul>
-  </nav>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../img/logo.png" alt="Logo FUNDENOR AQAB'AL'">
+        <span>FUNDENOR AQAB'AL'</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#programas">Programas ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="programa1.html">Alimentación y Nutrición</a></li>
+            <li><a href="programa2.html">Salud</a></li>
+            <li><a href="programa3.html">Higiene y Hogar</a></li>
+            <li><a href="programa4.html">Educación</a></li>
+            <li><a href="programa5.html">Entrega de Alimentos</a></li>
+          </ul>
+        </li>
+        <li><a href="../donaciones/donaciones.html" class="btn-donar">Donar</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="main-content">
+  <main class="main-content">
+
     <!-- HERO -->
-    <section class="hero" style="background-image: url('../img/programa5-hero.jpg');">
+    <section class="hero" style="background-image: url('../img/prog5.png');">
       <div class="hero-content">
         <h1>Ayuda Humanitaria</h1>
         <p>Brindando ayuda humanitaria durante emergencias y catástrofes naturales.</p>
+        <a class="btn" href="#areas">Ver áreas</a>
       </div>
     </section>
 
-    <!-- Descripción -->
-    <section id="descripcion" class="section bg-light">
-      <h2>Descripción General</h2>
+    <!-- DESCRIPCIÓN GENERAL -->
+    <section class="program-section">
+      <div class="program-content">
+        <h2>Descripción General</h2>
+        <p>
+          Nuestro programa de ayuda humanitaria está diseñado para brindar apoyo específicamente durante catástrofes naturales y situaciones de emergencia. Hemos asistido a familias afectadas por inundaciones y deslizamientos, así como a aquellas que han sido evacuadas de sus viviendas. Proveemos alimentos a albergues y actuamos como puente para canalizar donaciones hacia donde más se necesitan. Garantizamos que los insumos y donaciones se aprovechen de la mejor manera para beneficiar a quienes más lo necesitan.
+        </p>
+      </div>
+    </section>
+
+    <!-- ÁREAS DE TRABAJO / GALERÍA -->
+    <section id="areas" class="areas-section">
+      <h2>Galería de Entregas</h2>
+      <div class="gallery-preview">
+        <img src="../img/programa5/entrega1.png" alt="">
+        <img src="../img/programa5/entrega2.png" alt="">
+        <img src="../img/programa5/entrega3.png" alt="">
+        <img src="../img/programa5/entrega4.png" alt="">
+      </div>
+      <div class="gallery-btn-container">
+        <button class="btn-gallery" data-gallery="entregas">Ver galería</button>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="resultados">
+      <h2>Resultados al 2024</h2>
+      <div class="resultados-grid">
+        <div class="resultado-card">
+          <img src="../img/icons/nutricion.png" alt="">
+          <h3>1000</h3>
+          <p>Familias reciben apoyo por catástrofes</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DONACIONES -->
+<section id="donaciones" class="section section-light">
+  <div class="section-content cta-donacion">
+    <div class="section-text">
+      <h2>¡Únete y Apoya con tu Donación!</h2>
       <p>
-        Nuestro programa de ayuda humanitaria está diseñado para brindar apoyo específicamente durante catástrofes naturales y situaciones de emergencia. Hemos asistido a familias afectadas por inundaciones y deslizamientos, así como a aquellas que han sido evacuadas de sus viviendas. Proveemos alimentos a albergues y actuamos como puente para canalizar donaciones hacia donde más se necesitan. Como institución, ofrecemos la logística y movilización de todas estas donaciones, asegurando que el apoyo sea lo más ordenado y acertado posible. Nos esforzamos por garantizar que los insumos y donaciones recibidos se aprovechen de la mejor manera para beneficiar a quienes más lo necesitan.
+        Tu apoyo transforma vidas. Con tu contribución, podemos seguir llevando desarrollo, educación y bienestar
+        a las comunidades que más lo necesitan.
       </p>
-    </section>
-
-    <!-- Galería -->
-    <section id="galeria" class="section bg-light">
-      <h2>Galería</h2>
-      <div class="gallery">
-        <img src="../img/programa5/entrega1.png" alt="Entrega 1">
-        <img src="../img/programa5/entrega2.png" alt="Entrega 2">
-        <img src="../img/programa5/entrega3.png" alt="Entrega 3">
-        <img src="../img/programa5/entrega4.png" alt="Entrega 4">
+      <div class="formas-donacion">
+        <div class="donacion-card">
+          <img src="../img/icons/individual.webp" alt="Donación Individual">
+          <h3>Donación Individual</h3>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/empresarial.png" alt="Donación Empresarial">
+          <h3>Donación Empresarial</h3>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/causa.png" alt="Donación por Causa">
+          <h3>Donación por Causa</h3>
+        </div>
       </div>
-    </section>
+      <a href="../donaciones/donaciones.html" class="btn btn-donar">¡Dona Ahora!</a>
+    </div>
+    <div class="section-image">
+      <img src="../img/prog5.png" alt="Personas beneficiadas">
+    </div>
+  </div>
+</section>
 
-<section id="resultados" class="resultados">
-    <h2>Resultados al 2024</h2>
-      <div class="resultado-card">
-        <img src="../img/icons/nutricion.png" alt="Filtros">
-        <h3>1000</h3>
-        <p>Familias reciben apoyo por catástrofes</p>
-      </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="program-footer">
       <p>&copy; 2025 FUNDENOR AQAB'AL' — Todos los derechos reservados</p>
     </footer>
+  </main>
+
+  <!-- MODAL PARA GALERÍA -->
+  <div id="galleryModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
   </div>
 
+  <!-- JS -->
+  <script src="../js/sidebar.js"></script>
   <script src="../js/programas.js"></script>
-    <script src="js/main.js"></script>
   <script src="../js/auth.js"></script>
+  <script>
+    // ----- MODAL DE GALERÍA -----
+    const modal = document.getElementById("galleryModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.getElementsByClassName("close")[0];
+
+    document.querySelectorAll(".gallery-preview img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      });
+    });
+
+    closeBtn.onclick = () => (modal.style.display = "none");
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+  </script>
 </body>
 </html>

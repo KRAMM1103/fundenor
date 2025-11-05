@@ -4,113 +4,176 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Educación — FUNDENOR AQAB'AL'</title>
-
-  <!-- estilo propio para programas -->
   <link rel="stylesheet" href="../css/programas.css">
 </head>
+
 <body>
   <!-- NAVBAR -->
-<header class="navbar">
-  <a class="logo" href="../index.html">
-    <img src="../img/logo.png" alt="Logo FUNDENOR">
-    <span>FUNDENOR AQAB'AL'</span>
-  </a>
-
-   <nav>
-    <button class="nav-toggle" aria-label="Abrir menú">☰</button>
-    <ul class="nav-links">
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="../index.html#quienes">Quiénes Somos</a></li>
-      <li><a href="../index.html#contacto">Contacto</a></li>
-
-      <!-- MENÚ PROGRAMAS -->
-      <li class="dropdown">
-        <a href="#">Programas ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="programa1.html">Alimentación y Nutrición</a></li>
-          <li><a href="programa2.html">Salud</a></li>
-          <li><a href="programa3.html">Higiene y Hogar</a></li>
-          <li><a href="programa4.html">Educación</a></li>
-          <li><a href="programa5.html">Entrega de Alimentos</a></li>
-        </ul>
-      </li>
-
-      <li><a class="nav-cta" href="../donaciones/donaciones.html">Donar</a></li>
-    </ul>
-  </nav>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../img/logo.png" alt="Logo FUNDENOR AQAB'AL'">
+        <span>FUNDENOR AQAB'AL'</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#programas">Programas ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="programa1.html">Alimentación y Nutrición</a></li>
+            <li><a href="programa2.html">Salud</a></li>
+            <li><a href="programa3.html">Higiene y Hogar</a></li>
+            <li><a href="programa4.html">Educación</a></li>
+            <li><a href="programa5.html">Entrega de Alimentos</a></li>
+          </ul>
+        </li>
+        <li><a href="../donaciones/donaciones.html" class="btn-donar">Donar</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="main-content">
+  <main class="main-content">
+
     <!-- HERO -->
-    <section class="hero" style="background-image: url('../img/programa4-hero.jpg');">
+    <section class="hero" style="background-image: url('../img/prog4.png');">
       <div class="hero-content">
         <h1>Educación</h1>
         <p>Empoderando a niñas y jóvenes para acceder a una educación de calidad y oportunidades de desarrollo.</p>
-        <a class="btn" href="#tks">Ver áreas</a>
+        <a class="btn" href="#areas">Ver áreas</a>
       </div>
     </section>
 
-    <!-- Descripción -->
-    <section id="descripcion" class="section bg-light">
-      <h2>Descripción General</h2>
-      <p>
-        Nos enfocamos en promover en áreas rurales la educación de niñas y señoritas. Otorgamos becas escolares en diferentes modalidades, tanto en zonas rurales como urbanas, para que puedan continuar su educación dentro o fuera de sus comunidades. Nos centramos en las mujeres porque son quienes menos oportunidades tienen. A través de este programa, buscamos cambiar esa realidad y brindarles la oportunidad de acceder a una educación de calidad, empoderándolas para un futuro mejor.
-      </p>
+    <!-- DESCRIPCIÓN GENERAL -->
+    <section class="program-section">
+      <div class="program-content">
+        <h2>Descripción General</h2>
+        <p>
+          Nos enfocamos en promover en áreas rurales la educación de niñas y señoritas. Otorgamos becas escolares en diferentes modalidades, tanto en zonas rurales como urbanas, para que puedan continuar su educación dentro o fuera de sus comunidades. A través de este programa, buscamos brindarles la oportunidad de acceder a una educación de calidad y empoderarlas para un futuro mejor.
+        </p>
+      </div>
     </section>
 
-    <!-- Menu TKS -->
-    <section id="tks" class="section bg-light">
+    <!-- ÁREAS DE TRABAJO -->
+    <section id="areas" class="areas-section">
       <h2>Áreas de trabajo</h2>
-      <div class="programas-grid">
-        <a class="card" href="#comunitarias"><img class="icon" src="../img/icons/comunitarias.png" alt=""><div>Becas Escolares Comunitarias</div></a>
-        <a class="card" href="#residencia"><img class="icon" src="../img/icons/residencia.png" alt=""><div>Becas en Residencia</div></a>
+      <div class="areas-grid">
+        <a class="card" href="#comunitarias"><img src="../img/icons/comunitarias.png" alt=""><div>Becas Escolares Comunitarias</div></a>
+        <a class="card" href="#residencia"><img src="../img/icons/residencia.png" alt=""><div>Becas en Residencia</div></a>
       </div>
     </section>
 
-    <!-- Becas Escolares Comunitarias -->
-    <section id="comunitarias" class="section bg-light">
-      <h2>Becas Escolares Comunitarias</h2>
+    <!-- BECAS ESCOLARES COMUNITARIAS -->
+    <section id="comunitarias" class="program-section">
+      <div class="program-content">
+        <h2>Becas Escolares Comunitarias</h2>
+        <p>
+          Otorgamos becas escolares a niñas y señoritas que desean continuar su educación en su comunidad. Proveemos todos los útiles e insumos necesarios: útiles escolares, uniformes, zapatos y mochilas. Además, ofrecemos formación complementaria en educación sexual, higiene, valores, derechos y motivación para continuar sus estudios.
+        </p>
+      </div>
+      <div class="gallery-preview">
+        <img src="../img/programa4/comunitarias1.png" alt="">
+        <img src="../img/programa4/comunitarias2.png" alt="">
+        <img src="../img/programa4/comunitarias3.png" alt="">
+        <img src="../img/programa4/comunitarias4.png" alt="">
+      </div>
+      <div class="gallery-btn-container">
+        <button class="btn-gallery" data-gallery="comunitarias">Ver galería</button>
+      </div>
+    </section>
+
+    <!-- BECAS EN RESIDENCIA -->
+    <section id="residencia" class="program-section">
+      <div class="program-content">
+        <h2>Becas en Residencia</h2>
+        <p>
+          Nuestra residencia estudiantil acoge a niñas de comunidades sin acceso a educación local. Contamos con alimentación, habitaciones, tutorías y formación extraescolar. Proporcionamos un entorno seguro y enriquecedor para que las niñas puedan enfocarse en sus estudios y crecer en un ambiente de apoyo y cuidado.
+        </p>
+      </div>
+      <div class="gallery-preview">
+        <img src="../img/programa4/residencia1.png" alt="">
+        <img src="../img/programa4/residencia2.png" alt="">
+        <img src="../img/programa4/residencia3.png" alt="">
+        <img src="../img/programa4/residencia4.png" alt="">
+      </div>
+      <div class="gallery-btn-container">
+        <button class="btn-gallery" data-gallery="residencia">Ver galería</button>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="resultados">
+      <h2>Resultados al 2024</h2>
+      <div class="resultados-grid">
+        <div class="resultado-card">
+          <img src="../img/icons/comunitarias.png" alt="">
+          <h3>250</h3>
+          <p>Becas otorgadas a niñas y señoritas</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DONACIONES -->
+<section id="donaciones" class="section section-light">
+  <div class="section-content cta-donacion">
+    <div class="section-text">
+      <h2>¡Únete y Apoya con tu Donación!</h2>
       <p>
-        Otorgamos becas escolares específicamente a niñas y señoritas que desean continuar su educación en su comunidad. Proveemos todos los útiles e insumos necesarios, como útiles escolares, uniformes, zapatos y mochilas, para asegurar que tengan lo necesario para estudiar. Además, ofrecemos sesiones de formación complementaria con temas útiles e importantes para la vida diaria, como educación sexual, higiene, cuidado personal, valores, derechos y motivación para continuar su educación.
+        Tu apoyo transforma vidas. Con tu contribución, podemos seguir llevando desarrollo, educación y bienestar
+        a las comunidades que más lo necesitan.
       </p>
-      <div class="gallery">
-        <img src="../img/programa4/comunitarias1.png" alt="Comunitarias 1">
-        <img src="../img/programa4/comunitarias2.png" alt="Comunitarias 2">
-        <img src="../img/programa4/comunitarias3.png" alt="Comunitarias 3">
-        <img src="../img/programa4/comunitarias4.png" alt="Comunitarias 4">
+      <div class="formas-donacion">
+        <div class="donacion-card">
+          <img src="../img/icons/individual.webp" alt="Donación Individual">
+          <h3>Donación Individual</h3>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/empresarial.png" alt="Donación Empresarial">
+          <h3>Donación Empresarial</h3>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/causa.png" alt="Donación por Causa">
+          <h3>Donación por Causa</h3>
+        </div>
       </div>
-    </section>
+      <a href="../donaciones/donaciones.html" class="btn btn-donar">¡Dona Ahora!</a>
+    </div>
+    <div class="section-image">
+      <img src="../img/prog4.png" alt="Personas beneficiadas">
+    </div>
+  </div>
+</section>
 
-    <!-- Becas en Residencia -->
-    <section id="residencia" class="section">
-      <h2>Becas en Residencia</h2>
-      <p>
-        Nuestra residencia estudiantil es una casa especialmente acondicionada para recibir a niñas de distintas comunidades que no tienen la posibilidad de continuar su formación dentro de sus propias localidades debido a la falta y lejanía de escuelas. La residencia cuenta con los servicios básicos necesarios para atender a las becadas, incluyendo alimentación, habitaciones, resguardo, medicina, acompañamiento y tutorías. Además, ofrecemos formación extraescolar para complementar su educación y desarrollo personal. Nuestro objetivo es proporcionar un entorno seguro y enriquecedor donde las niñas puedan enfocarse en sus estudios y crecer en un ambiente de apoyo y cuidado.
-      </p>
-      <div class="gallery">
-        <img src="../img/programa4/residencia1.png" alt="Residencia 1">
-        <img src="../img/programa4/residencia2.png" alt="Residencia 2">
-        <img src="../img/programa4/residencia3.png" alt="Residencia 3">
-        <img src="../img/programa4/residencia4.png" alt="Residencia 4">
-      </div>
-    </section>
-
-    <section id="resultados" class="resultados">
-    <h2>Resultados al 2024</h2>
-      <div class="resultado-card">
-        <img src="../img/icons/comunitarias.png" alt="Filtros">
-        <h3>250</h3>
-        <p>Becas otorgadas a niñas y señoritas</p>
-      </div>
-    </section>  
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="program-footer">
       <p>&copy; 2025 FUNDENOR AQAB'AL' — Todos los derechos reservados</p>
     </footer>
+  </main>
+
+  <!-- MODAL PARA GALERÍA -->
+  <div id="galleryModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
   </div>
 
+  <!-- JS -->
+  <script src="../js/sidebar.js"></script>
   <script src="../js/programas.js"></script>
-    <script src="js/main.js"></script>
   <script src="../js/auth.js"></script>
+  <script>
+    // ----- MODAL DE GALERÍA -----
+    const modal = document.getElementById("galleryModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.getElementsByClassName("close")[0];
+
+    document.querySelectorAll(".gallery-preview img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      });
+    });
+
+    closeBtn.onclick = () => (modal.style.display = "none");
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+  </script>
 </body>
 </html>

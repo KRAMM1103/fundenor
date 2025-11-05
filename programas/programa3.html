@@ -4,128 +4,192 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Higiene y Hogar — FUNDENOR AQAB'AL'</title>
-
-  <!-- estilo propio para programas -->
   <link rel="stylesheet" href="../css/programas.css">
 </head>
+
 <body>
   <!-- NAVBAR -->
- <header class="navbar">
-  <a class="logo" href="../index.html">
-    <img src="../img/logo.png" alt="Logo FUNDENOR">
-    <span>FUNDENOR AQAB'AL'</span>
-  </a>
-
-   <nav>
-    <button class="nav-toggle" aria-label="Abrir menú">☰</button>
-    <ul class="nav-links">
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="../index.html#quienes">Quiénes Somos</a></li>
-      <li><a href="../index.html#contacto">Contacto</a></li>
-
-      <!-- MENÚ PROGRAMAS -->
-      <li class="dropdown">
-        <a href="#">Programas ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="programa1.html">Alimentación y Nutrición</a></li>
-          <li><a href="programa2.html">Salud</a></li>
-          <li><a href="programa3.html">Higiene y Hogar</a></li>
-          <li><a href="programa4.html">Educación</a></li>
-          <li><a href="programa5.html">Entrega de Alimentos</a></li>
-        </ul>
-      </li>
-
-      <li><a class="nav-cta" href="../donaciones/donaciones.html">Donar</a></li>
-    </ul>
-  </nav>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../img/logo.png" alt="Logo FUNDENOR AQAB'AL'">
+        <span>FUNDENOR AQAB'AL'</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#programas">Programas ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="programa1.html">Alimentación y Nutrición</a></li>
+            <li><a href="programa2.html">Salud</a></li>
+            <li><a href="programa3.html">Higiene y Hogar</a></li>
+            <li><a href="programa4.html">Educación</a></li>
+            <li><a href="programa5.html">Entrega de Alimentos</a></li>
+          </ul>
+        </li>
+        <li><a href="../donaciones/donaciones.html" class="btn-donar">Donar</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="main-content">
+  <main class="main-content">
+
     <!-- HERO -->
-    <section class="hero" style="background-image: url('../img/programa3-hero.jpg');">
+    <section class="hero" style="background-image: url('../img//prog3.png');">
       <div class="hero-content">
         <h1>Higiene y Hogar</h1>
         <p>Promoviendo prácticas de higiene y mejoras en el hogar para un entorno saludable y armonioso.</p>
-        <a class="btn" href="#tks">Ver áreas</a>
+        <a class="btn" href="#areas">Ver áreas</a>
       </div>
     </section>
 
-    <!-- Descripción -->
-    <section id="descripcion" class="section bg-light">
-      <h2>Descripción General</h2>
-      <p>
-        Enseñamos a las familias a aprovechar los recursos locales mediante ideas ingeniosas que mejoran tanto la higiene como la infraestructura del hogar. Nuestro objetivo es crear un ambiente sano y agradable para vivir, promoviendo prácticas que aseguren un entorno limpio y ordenado, fomentando un sentido de orgullo y propiedad sobre sus hogares.
-      </p>
+    <!-- DESCRIPCIÓN GENERAL -->
+    <section class="program-section">
+      <div class="program-content">
+        <h2>Descripción General</h2>
+        <p>
+          Enseñamos a las familias a aprovechar los recursos locales mediante ideas ingeniosas que mejoran tanto la higiene como la infraestructura del hogar. Nuestro objetivo es crear un ambiente sano y agradable, promoviendo prácticas que aseguren un entorno limpio y ordenado, fomentando orgullo y propiedad sobre sus hogares.
+        </p>
+      </div>
     </section>
 
-    <!-- Menu TKS -->
-    <section id="tks" class="section bg-light">
+    <!-- ÁREAS DE TRABAJO -->
+    <section id="areas" class="areas-section">
       <h2>Áreas de trabajo</h2>
-      <div class="programas-grid">
-        <a class="card" href="#higiene"><img class="icon" src="../img/icons/higiene.png" alt=""><div>Higiene Familiar</div></a>
-        <a class="card" href="#infraestructura"><img class="icon" src="../img/icons/infraestructura.png" alt=""><div>Mejoramiento de Infraestructuras</div></a>
-        <a class="card" href="#casa"><img class="icon" src="../img/icons/casa.png" alt=""><div>Casa Hogar Saludable</div></a>
+      <div class="areas-grid">
+        <a class="card" href="#higiene"><img src="../img/icons/higiene.png" alt=""><div>Higiene Familiar</div></a>
+        <a class="card" href="#infraestructura"><img src="../img/icons/infraestructura.png" alt=""><div>Mejoramiento de Infraestructuras</div></a>
+        <a class="card" href="#casa"><img src="../img/icons/casa.png" alt=""><div>Casa Hogar Saludable</div></a>
       </div>
     </section>
 
-    <!-- Higiene Familiar -->
-    <section id="higiene" class="section bg-light">
-      <h2>Higiene Familiar</h2>
+    <!-- HIGIENE FAMILIAR -->
+    <section id="higiene" class="program-section">
+      <div class="program-content">
+        <h2>Higiene Familiar</h2>
+        <p>
+          Abordamos temas de higiene familiar y personal, mejorando la salud mediante buenas prácticas: higiene dental, capilar, lavado de manos, prevención de enfermedades y promoción del bienestar general.
+        </p>
+      </div>
+      <div class="gallery-preview">
+        <img src="../img/programa3/higiene1.png" alt="">
+        <img src="../img/programa3/higiene2.png" alt="">
+        <img src="../img/programa3/higiene3.png" alt="">
+        <img src="../img/programa3/higiene4.png" alt="">
+      </div>
+      <div class="gallery-btn-container">
+        <button class="btn-gallery" data-gallery="higiene">Ver galería</button>
+      </div>
+    </section>
+
+    <!-- MEJORAMIENTO DE INFRAESTRUCTURAS -->
+    <section id="infraestructura" class="program-section">
+      <div class="program-content">
+        <h2>Mejoramiento de Infraestructuras</h2>
+        <p>
+          Identificamos necesidades de mejora en viviendas y proporcionamos recursos como pilas, tinacos y láminas para duchas o sanitarios. Apoyamos a familias que aplican buenas prácticas, combinando educación con recursos prácticos.
+        </p>
+      </div>
+      <div class="gallery-preview">
+        <img src="../img/programa3/infra1.png" alt="">
+        <img src="../img/programa3/infra2.png" alt="">
+      </div>
+      <div class="gallery-btn-container">
+        <button class="btn-gallery" data-gallery="infraestructura">Ver galería</button>
+      </div>
+    </section>
+
+    <!-- CASA HOGAR SALUDABLE -->
+    <section id="casa" class="program-section">
+      <div class="program-content">
+        <h2>Casa Hogar Saludable</h2>
+        <p>
+          Sensibilizamos sobre limpieza, orden y organización del hogar usando recursos locales. Mejoramos espacios de cocina, dormitorio, duchas y sanitarios, y fomentamos espacios adecuados para animales. Buscamos que las familias adopten prácticas que hagan su hogar más saludable y armonioso.
+        </p>
+      </div>
+      <div class="gallery-preview">
+        <img src="../img/programa3/casa1.png" alt="">
+        <img src="../img/programa3/casa2.png" alt="">
+      </div>
+      <div class="gallery-btn-container">
+        <button class="btn-gallery" data-gallery="casa">Ver galería</button>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="resultados">
+      <h2>Resultados al 2024</h2>
+      <div class="resultados-grid">
+        <div class="resultado-card">
+          <img src="../img/icons/infraestructura.png" alt="">
+          <h3>500</h3>
+          <p>Familias con mejoras en la vivienda</p>
+        </div>
+      </div>
+    </section>
+
+<!-- SECCIÓN DONACIONES -->
+<section id="donaciones" class="section section-light">
+  <div class="section-content cta-donacion">
+    <div class="section-text">
+      <h2>¡Únete y Apoya con tu Donación!</h2>
       <p>
-        Abordamos temas de higiene familiar y personal con las familias, con el objetivo de mejorar la salud a través de buenas prácticas de higiene. Nos enfocamos en la higiene personal, incluyendo: higiene dental, higiene capilar, lavado de manos y prevenir enfermedades y promover el bienestar general.
+        Tu apoyo transforma vidas. Con tu contribución, podemos seguir llevando desarrollo, educación y bienestar
+        a las comunidades que más lo necesitan.
       </p>
-      <div class="gallery">
-        <img src="../img/programa3/higiene1.png" alt="Higiene 1">
-        <img src="../img/programa3/higiene2.png" alt="Higiene 2">
-        <img src="../img/programa3/higiene3.png" alt="Higiene 3">
-        <img src="../img/programa3/higiene4.png" alt="Higiene 4">
+      <div class="formas-donacion">
+        <div class="donacion-card">
+          <img src="../img/icons/individual.webp" alt="Donación Individual">
+          <h3>Donación Individual</h3>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/empresarial.png" alt="Donación Empresarial">
+          <h3>Donación Empresarial</h3>
+        </div>
+        <div class="donacion-card">
+          <img src="../img/icons/causa.png" alt="Donación por Causa">
+          <h3>Donación por Causa</h3>
+        </div>
       </div>
-    </section>
-
-    <!-- Mejoramiento de Infraestructuras -->
-    <section id="infraestructura" class="section">
-      <h2>Mejoramiento de Infraestructuras</h2>
-      <p>
-        En nuestras sesiones de sensibilización para un hogar saludable, identificamos la necesidad de mejorar la infraestructura de las viviendas. Gestionamos recursos para proporcionar insumos como pilas, tinacos, y láminas para duchas o sanitarios. Estos recursos se entregan a las familias que demuestran cambios y mejoras en su aplicación de buenas prácticas. Así, buscamos no solo educar, sino también apoyar con insumos prácticos que contribuyan a un entorno doméstico más adecuado y funcional.
-      </p>
-      <div class="gallery">
-        <img src="../img/programa3/infra1.png" alt="Infraestructura 1">
-        <img src="../img/programa3/infra2.png" alt="Infraestructura 2">
-      </div>
-    </section>
-
-    <!-- Sensibilización Casa Hogar Saludable -->
-    <section id="casa" class="section bg-light">
-      <h2>Casa Hogar Saludable</h2>
-      <p>
-        Trabajamos en la sensibilización para mantener una casa y hogar saludable, promoviendo la limpieza, el orden y la organización. Usamos recursos locales para mejorar y organizar espacios en la cocina, dormitorio, duchas y sanitarios. Además, fomentamos la creación de un espacio adecuado para los animales. Nuestro objetivo es que las familias adopten prácticas que mejoren su entorno, contribuyendo a un hogar más saludable y armonioso.
-      </p>
-      <div class="gallery">
-        <img src="../img/programa3/casa1.png" alt="Casa 1">
-        <img src="../img/programa3/casa2.png" alt="Casa 2">
-      </div>
-    </section>
-
-<!-- RESULTADOS -->
-  <section id="resultados" class="resultados">
-    <h2>Resultados al 2024</h2>
-    <div class="resultados-grid">
-      <div class="resultado-card">
-        <img src="../img/icons/infraestructura.png" alt="Jornadas">
-        <h3>500</h3>
-        <p>Familias con mejoras en la vivienda</p>
-      </div>
+      <a href="../donaciones/donaciones.html" class="btn btn-donar">¡Dona Ahora!</a>
     </div>
-  </section>
+    <div class="section-image">
+      <img src="../img/prog3.png" alt="Personas beneficiadas">
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="program-footer">
       <p>&copy; 2025 FUNDENOR AQAB'AL' — Todos los derechos reservados</p>
     </footer>
+  </main>
+
+  <!-- MODAL PARA GALERÍA -->
+  <div id="galleryModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
   </div>
 
+  <!-- JS -->
+  <script src="../js/sidebar.js"></script>
   <script src="../js/programas.js"></script>
-    <script src="js/main.js"></script>
   <script src="../js/auth.js"></script>
+  <script>
+    // ----- MODAL DE GALERÍA -----
+    const modal = document.getElementById("galleryModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.getElementsByClassName("close")[0];
+
+    document.querySelectorAll(".gallery-preview img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      });
+    });
+
+    closeBtn.onclick = () => (modal.style.display = "none");
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+  </script>
 </body>
 </html>

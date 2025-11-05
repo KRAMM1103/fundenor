@@ -5,6 +5,7 @@ const API_BASE = "http://localhost:4000/api/auth";
 function saveSession(user, token) {
   localStorage.setItem("user", JSON.stringify(user));
   localStorage.setItem("token", token);
+  localStorage.setItem("role", user.role);
 }
 
 function getUser() {
@@ -22,7 +23,17 @@ function isLoggedIn() {
 function logout() {
   localStorage.removeItem("user");
   localStorage.removeItem("token");
-  window.location.href = "../login/login.html";
+  localStorage.removeItem("role");
+  window.location.href = "/login/login.html"; // ✅ ruta absoluta
+}
+
+// --- FUNCIÓN EXTRA: Validar acceso admin ---
+function checkAdminAccess() {
+  const role = localStorage.getItem("role");
+  if (role !== "admin") {
+    alert("Acceso restringido. Debes iniciar sesión como administrador.");
+    window.location.href = "/login/login.html";
+  }
 }
 
 // --- ACTUALIZAR NAVBAR ---
@@ -32,81 +43,43 @@ function updateNavbar() {
 
   const existingSession = isLoggedIn();
   const user = getUser();
+  const role = localStorage.getItem("role");
 
-  // Limpia contenido previo
+  const adminElements = document.querySelectorAll(".admin-only");
+  adminElements.forEach(el => (el.style.display = role === "admin" ? "block" : "none"));
+
   const sessionArea = document.getElementById("sessionArea");
   if (sessionArea) sessionArea.remove();
 
-  // Crear nuevo contenedor
   const div = document.createElement("div");
   div.id = "sessionArea";
 
   if (existingSession && user) {
     div.innerHTML = `
-      <span style="margin-right: 10px; font-weight: 600; color: var(--primary);">
+      <span style="margin-right: 10px; font-weight: 600; color: black;">
         👋 Hola, ${user.name}
       </span>
-      <button id="logoutBtn" style="background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
+      <button id="logoutBtn" style="background: white; color: black; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
         Cerrar sesión
       </button>
     `;
   } else {
     div.innerHTML = `
-      <a href="../login/login.html" style="text-decoration:none; color: var(--primary); font-weight:600;">Iniciar sesión</a>
+      <a href="/login/login.html" style="text-decoration:none; color: var(--primary); font-weight:600;">Iniciar sesión</a>
       <span> / </span>
-      <a href="../login/registro.html" style="text-decoration:none; color: var(--primary); font-weight:600;">Registrarse</a>
+      <a href="/login/registro.html" style="text-decoration:none; color: var(--primary); font-weight:600;">Registrarse</a>
     `;
   }
 
   navbar.appendChild(div);
 
-  // Evento para cerrar sesión
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) logoutBtn.addEventListener("click", logout);
 }
 
-// --- AUTOEJECUCIÓN EN TODAS LAS PÁGINAS ---
 document.addEventListener("DOMContentLoaded", updateNavbar);
 
-// --- MANEJO DE FORMULARIOS ---
-// Registro
-const registerForm = document.getElementById("registerForm");
-if (registerForm) {
-  registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const nombreInput = document.getElementById("nombre");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const confirmPasswordInput = document.getElementById("confirmPassword");
-
-    if (passwordInput.value !== confirmPasswordInput.value) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
-
-    try {
-      const res = await fetch(`${API_BASE}/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: nombreInput.value,
-          email: emailInput.value,
-          password: passwordInput.value,
-        }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message);
-      alert("Registro exitoso. Ahora puedes iniciar sesión.");
-      window.location.href = "login.html";
-    } catch (err) {
-      alert("Error: " + err.message);
-    }
-  });
-}
-
-// Login
+// --- LOGIN ---
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
@@ -130,7 +103,13 @@ if (loginForm) {
 
       saveSession(data.user, data.token);
       alert("Inicio de sesión exitoso");
-      window.location.href = "../index.html";
+
+      // ✅ Solo una redirección según rol
+      if (data.user.role === "admin") {
+        window.location.href = "/admin.html";
+      } else {
+        window.location.href = "/index.html";
+      }
     } catch (err) {
       alert("Error: " + err.message);
     }
