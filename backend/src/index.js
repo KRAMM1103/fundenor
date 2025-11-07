@@ -12,6 +12,7 @@ import seguimientoRoutes from "./routes/seguimientoRoutes.js";
 dotenv.config();
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
@@ -37,6 +38,11 @@ app.get("/donations/cancel", (req, res) => {
 });
 
 const PORT = process.env.PORT || 4000;
+
 app.listen(PORT, () => {
   console.log(`✅ Servidor ejecutándose en http://localhost:${PORT}`);
+});
+
+app.get("/api/config/paypal", (req, res) => {
+  res.json({ clientId: process.env.PAYPAL_CLIENT_ID });
 });

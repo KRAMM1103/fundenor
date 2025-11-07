@@ -5,7 +5,8 @@ const prisma = new PrismaClient();
 export const createBecada = async (req, res) => {
   try {
     const {
-      nombre,
+      nombres,
+      apellidos,
       fechaNacimiento,
       grado,
       tipoBeca,
@@ -17,13 +18,13 @@ export const createBecada = async (req, res) => {
       necesidades
     } = req.body;
 
-    // Validación simple
-    if (!nombre || !fechaNacimiento || !grado || !tipoBeca || !departamento || !municipio || !comunidad || !tallaPlayera)
+    if (!nombres || !fechaNacimiento || !grado || !tipoBeca || !departamento || !municipio || !comunidad || !tallaPlayera)
       return res.status(400).json({ message: "Faltan campos obligatorios" });
 
     const becada = await prisma.becadas.create({
       data: {
-        nombre,
+        nombres,
+        apellidos,
         fecha_nacimiento: new Date(fechaNacimiento),
         grado,
         tipo_beca: tipoBeca,
@@ -82,5 +83,47 @@ export const deleteBecada = async (req, res) => {
   } catch (err) {
     console.error("Error en deleteBecada:", err);
     res.status(500).json({ message: "Error al eliminar becada" });
+  }
+};
+
+// ================== ACTUALIZAR ==================
+export const updateBecada = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      nombres,
+      apellidos,
+      fechaNacimiento,
+      grado,
+      tipoBeca,
+      departamento,
+      municipio,
+      comunidad,
+      tallaPlayera,
+      tallaZapatos,
+      necesidades
+    } = req.body;
+
+    const becada = await prisma.becadas.update({
+      where: { id: parseInt(id) },
+      data: {
+        nombres,
+        apellidos,
+        fecha_nacimiento: new Date(fechaNacimiento),
+        grado,
+        tipo_beca: tipoBeca,
+        departamento,
+        municipio,
+        comunidad,
+        talla_playera: tallaPlayera,
+        talla_zapatos: tallaZapatos,
+        necesidades
+      }
+    });
+
+    res.json(becada);
+  } catch (err) {
+    console.error("Error en updateBecada:", err);
+    res.status(500).json({ message: "Error al actualizar becada" });
   }
 };

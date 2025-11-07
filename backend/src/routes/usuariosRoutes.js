@@ -1,14 +1,23 @@
 import express from "express";
-import { getUsuarios, getUsuarioById, deleteUsuario } from "../controllers/usuariosController.js";
+import {
+  getUsuarios,
+  getUsuarioById,
+  createUsuario,
+  updateUsuario,
+  deleteUsuario
+} from "../controllers/usuariosController.js";
 import { authenticateToken, requireRole } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// Todas estas rutas requieren que el usuario esté autenticado y sea admin
-router.use(authenticateToken, requireRole("admin"));
+// Todas estas rutas requieren autenticación
+router.use(authenticateToken);
 
-router.get("/", getUsuarios);          // Listar todos los usuarios
-router.get("/:id", getUsuarioById);    // Obtener usuario por ID
-router.delete("/:id", deleteUsuario);  // Eliminar usuario
+// Solo los ADMIN pueden gestionar usuarios (crear, editar, eliminar, listar)
+router.get("/", requireRole("admin"), getUsuarios);
+router.get("/:id", requireRole("admin"), getUsuarioById);
+router.post("/", requireRole("admin"), createUsuario);
+router.put("/:id", requireRole("admin"), updateUsuario);
+router.delete("/:id", requireRole("admin"), deleteUsuario);
 
 export default router;

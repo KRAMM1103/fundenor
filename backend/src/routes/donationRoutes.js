@@ -1,16 +1,19 @@
 import express from "express";
 import { authenticateToken } from "../middleware/authMiddleware.js";
-import { getAllDonations, createDonation, createPaggoDonation } from "../controllers/donationsController.js";
+import {
+  getAllDonations,
+  createPaggoDonation,
+  createPayPalOrder,
+  capturePayPalOrder
+} from "../controllers/donationsController.js";
 
 const router = express.Router();
 
-// Obtener todas las donaciones (admins)
 router.get("/", authenticateToken, getAllDonations);
-
-// Registrar donación PayPal
-router.post("/", authenticateToken, createDonation);
-
-// Registrar donación Paggo
 router.post("/paggo", authenticateToken, createPaggoDonation);
+
+// Endpoints PayPal
+router.post("/create-order", authenticateToken, createPayPalOrder);
+router.post("/capture-order/:orderID", authenticateToken, capturePayPalOrder);
 
 export default router;

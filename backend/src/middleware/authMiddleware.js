@@ -13,10 +13,18 @@ export const authenticateToken = (req, res, next) => {
   }
 };
 
-export const requireRole = (role) => {
+export const requireRole = (roles) => {
   return (req, res, next) => {
     if (!req.user) return res.status(401).json({ message: "No autorizado" });
-    if (req.user.role !== role) return res.status(403).json({ message: "Acceso denegado" });
+
+    // Si `roles` es un solo string, conviértelo en arreglo
+    const allowedRoles = Array.isArray(roles) ? roles : [roles];
+
+    if (!allowedRoles.includes(req.user.role)) {
+      return res.status(403).json({ message: "Acceso denegado" });
+    }
+
     next();
   };
 };
+
