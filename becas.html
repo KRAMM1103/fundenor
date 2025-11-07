@@ -3,28 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Becas — FUNDENOR AQAB'AL'</title>
+  <title>Panel de Becas — FUNDENOR AQ'AB'AL</title>
   <link rel="stylesheet" href="css/admin.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+<script src="js/exportar.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const role = localStorage.getItem("role");
-    
-    if (role !== "admin") {
+
+    // Permitir acceso a admin y becasManager
+    if (role !== "admin" && role !== "becasManager") {
       alert("No tienes permiso para acceder a esta página");
       window.location.href = "index.html";
     }
   });
 </script>
 
-<body>
+<body class="with-sidebar">
+  <div class="app">
+    <aside class="sidebar"></aside>
   <header>
     <nav class="navbar">
       <div class="logo">
         <img src="img/logo.png" alt="Logo FUNDENOR AQAB'AL'">
-        <span>FUNDENOR AQAB'AL'</span>
+        <span>FUNDENOR AQ'AB'AL</span>
       </div>
       <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
@@ -35,34 +42,19 @@
             <li><a href="programas/programa2.html">Salud</a></li>
             <li><a href="programas/programa3.html">Higiene y Hogar</a></li>
             <li><a href="programas/programa4.html">Educación</a></li>
-            <li><a href="programas/programa5.html">Entrega de Alimentos</a></li>
+            <li><a href="programas/programa5.html">Ayuda Humanitaria</a></li>
           </ul>
         </li>
         <li><a href="donaciones/donaciones.html" class="btn-donar">Donar</a></li>
       </ul>
     </nav>
   </header>
+
 <div class="app">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <img src="img/logo.png" class="brand__logo" alt="Logo">
-      <span class="brand__name">FUNDENOR AQAB'AL'</span>
-    </div>
-    <nav class="menu">
-      <a href="admin.html" class="menu__item"><span class="ico">💰</span><span>Donaciones</span></a>
-      <a href="#" class="menu__item active"><span class="ico">🎓</span><span>Becas</span></a>
-      <a href="seguimiento.html" class="menu__item"><span class="ico">📊</span><span>Seguimiento</span></a>
-      <a href="usuarios.html" class="menu__item"><span class="ico">👥</span><span>Usuarios</span></a>
-    </nav>
-  </aside>
-
   
-
+  
     <!-- CONTENT -->
     <div class="content">
-
       <!-- CARDS RESUMEN -->
       <div class="cards">
         <div class="card">
@@ -76,10 +68,6 @@
         <div class="card">
           <h3>Becadas Residencia</h3>
           <div class="big" id="becadasResidencia">0</div>
-        </div>
-        <div class="card">
-          <h3>Insumos Entregados</h3>
-          <div class="big" id="insumosEntregados">0</div>
         </div>
       </div>
 
@@ -128,7 +116,14 @@
           <option value="">Municipio</option>
         </select>
 
-        <button id="btnExportExcel" class="btn">Exportar a Excel</button>
+      <div class="dropdown">
+        <button class="btn" id="btnExport">Exportar a:</button>
+        <div class="dropdown-content" id="exportOptions">
+          <a href="#" data-format="csv">CSV</a>
+          <a href="#" data-format="excel">Excel</a>
+          <a href="#" data-format="pdf">PDF</a>
+        </div>
+      </div>
       </div>
 
       <!-- TABLA DE BECADAS -->
@@ -140,12 +135,18 @@
           <table class="table" id="tableBecadas">
             <thead>
               <tr>
-                <th>Nombre</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
                 <th>Fecha Nac.</th>
                 <th>Edad</th>
                 <th>Grado</th>
                 <th>Tipo de Beca</th>
+                <th>Departamento</th>
+                <th>Municipio</th>
                 <th>Comunidad</th>
+                <th>Talla Playera</th>
+                <th>Talla Zapatos</th>
+                <th>Necesidades Educativas</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -167,8 +168,11 @@
   <div class="detail-panel__body">
     <h2>Registrar Nueva Becada</h2>
     <form id="formBecada">
-      <label for="nombre">Nombre completo</label>
-      <input type="text" id="nombre" name="nombre" required>
+      <label for="nombres">Nombres:</label>
+      <input type="text" id="nombres" name="nombres" required>
+
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" id="apellidos" name="apellidos">
 
       <label for="fechaNacimiento">Fecha de nacimiento</label>
       <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
@@ -215,17 +219,24 @@
       <label for="tallaPlayera">Talla de Playera</label>
       <select id="tallaPlayera" name="tallaPlayera" required>
         <option value="">Selecciona</option>
+        <option value="12">12</option>
+        <option value="14">14</option>
         <option value="S">S</option>
         <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
       </select>
 
       <label for="tallaZapatos">Talla Zapatos</label>
-      <input type="text" id="tallaZapatos" name="tallaZapatos">
+      <input type="number" id="tallaZapatos" name="tallaZapatos" min="15" max="50" step="1">
 
-      <label for="necesidades">Principales necesidades educativas</label>
-      <textarea id="necesidades" name="necesidades" rows="3"></textarea>
+      <label>Principales necesidades educativas</label>
+<div>
+  <input type="text" id="nuevaNecesidad" placeholder="Escribe una necesidad">
+  <button type="button" id="btnAgregarNecesidad">Agregar</button>
+</div>
+<ul id="listaNecesidades"></ul>
+<input type="hidden" id="necesidades">
+
+        </div>
 
       <div class="detail-actions">
         <button type="submit" class="btn">Guardar</button>
@@ -234,8 +245,30 @@
   </div>
 </div>
 
+<script src="js/sidebar.js"></script>
 <script src="/js/auth.js"></script>
 <script src="/js/becas.js"></script>
+
+<!-- FOOTER -->
+  <footer>
+  <div class="footer-container">
+    <div class="footer-left">
+      <img src="../img/logo.png" alt="Logo FUNDENOR AQ'AB'AL" class="footer-logo">
+    </div>
+
+    <div class="footer-center">
+      <p>&copy; 2025 FUNDENOR AQ'AB'AL — Todos los derechos reservados</p>
+      <p class="footer-dev">
+        Universidad Mariano Gálvez de Guatemala, Sede Cobán A.V.<br>
+        Ingeniería en Sistemas de Información y Ciencias de la Computación — Décimo Ciclo
+      </p>
+    </div>
+
+    <div class="footer-right">
+      <img src="../img/logo_umg.png" alt="Logo UMG" class="footer-logo">
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

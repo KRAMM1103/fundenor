@@ -166,3 +166,403 @@ a { color: inherit; text-decoration: none; }
 .dropdown-menu a:hover { background: #f0f0f0; }
 .btn-donar { background-color: #ff9800; color: white; padding: 10px 20px; border-radius: 25px; font-weight: 600; text-transform: uppercase; transition: background 0.3s; }
 .btn-donar:hover { background-color: #e68900; }
+/* ======= FIX: Espacio para que el contenido no quede debajo de la navbar ======= */
+body {
+  padding-top: 80px; /* Ajusta según la altura real de tu navbar */
+}
+
+@media (max-width: 720px) {
+  body {
+    padding-top: 70px; /* Navbar más pequeña en móviles */
+  }
+}
+
+/* =================== FOOTER =================== */
+footer { background: #004aad; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+footer {
+  background: #004aad;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-left,
+.footer-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-center {
+  flex: 2;
+  text-align: center;
+}
+
+.footer-logo {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-dev {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 700px) {
+  .footer-container {
+    flex-direction: column;
+  }
+  .footer-left,
+  .footer-right {
+    order: 1;
+  }
+  .footer-center {
+    order: 2;
+  }
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 8px 12px;
+  display: block;
+  text-decoration: none;
+  color: #000;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/* =================== FORMULARIO (aplica sobre el HTML actual) =================== */
+/* Contenedor interno del panel (body) */
+#modalBecada .detail-panel__body {
+  padding: 22px 18px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Título del panel */
+#modalBecada .detail-panel__body > h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* El formulario como tal */
+#formBecada {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Labels */
+#formBecada label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+/* Inputs, selects y textarea */
+#formBecada input[type="text"],
+#formBecada input[type="date"],
+#formBecada input[type="number"],
+#formBecada input[type="email"],
+#formBecada select,
+#formBecada textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fafafa;
+  font-size: 0.95rem;
+  transition: border-color .16s ease, background .16s ease;
+  box-sizing: border-box;
+}
+
+/* Focus */
+#formBecada input:focus,
+#formBecada select:focus,
+#formBecada textarea:focus {
+  border-color: var(--accent);
+  background: #fff;
+  outline: none;
+  box-shadow: 0 4px 16px rgba(0,74,173,0.06);
+}
+
+/* Textarea tamaño */
+#formBecada textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Filas con varios campos en línea (usa wrapper .row en HTML si lo deseas) */
+#formBecada .row {
+  display: flex;
+  gap: 10px;
+}
+#formBecada .row > * { flex: 1; }
+
+/* Acciones / botones al final */
+#formBecada .detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Botón guardar */
+#formBecada button[type="submit"],
+#formBecada .btn-save {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background .14s ease;
+}
+#formBecada button[type="submit"]:hover,
+#formBecada .btn-save:hover { background: #003b8e; }
+
+/* Botón cancelar (si lo incorporas) */
+#formBecada .btn-cancel {
+  background: #f3f4f6;
+  color: #222;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  cursor: pointer;
+  font-weight: 600;
+}
+#formBecada .btn-cancel:hover { background: #eaeaea; }
+
+/* Ajustes para el botón de cerrar (ya existe .detail-panel__close) */
+.detail-panel__close {
+  background: transparent;
+  border: 0;
+  font-size: 1.35rem;
+  cursor: pointer;
+  color: rgba(0,0,0,0.6);
+  position: absolute;
+  top: 12px;
+  right: 14px;
+}
+
+/* =================== FORMULARIOS DE SEGUIMIENTO Y DATOS FINALES =================== */
+/* Contenedor interno del panel (body) */
+#modalMensual .detail-panel__body,
+#modalFinales .detail-panel__body {
+  padding: 22px 18px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Título del panel */
+#modalMensual .detail-panel__body > h2,
+#modalFinales .detail-panel__body > h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* El formulario como tal */
+#formMensual,
+#formFinales {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Labels */
+#formMensual label,
+#formFinales label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+/* Inputs, selects y textarea */
+#formMensual input[type="text"],
+#formMensual input[type="date"],
+#formMensual input[type="number"],
+#formMensual input[type="email"],
+#formMensual select,
+#formMensual textarea,
+#formFinales input[type="text"],
+#formFinales input[type="date"],
+#formFinales input[type="number"],
+#formFinales input[type="email"],
+#formFinales select,
+#formFinales textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fafafa;
+  font-size: 0.95rem;
+  transition: border-color .16s ease, background .16s ease;
+  box-sizing: border-box;
+}
+
+/* Focus */
+#formMensual input:focus,
+#formMensual select:focus,
+#formMensual textarea:focus,
+#formFinales input:focus,
+#formFinales select:focus,
+#formFinales textarea:focus {
+  border-color: var(--accent);
+  background: #fff;
+  outline: none;
+  box-shadow: 0 4px 16px rgba(0,74,173,0.06);
+}
+
+/* Textarea tamaño */
+#formMensual textarea,
+#formFinales textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Filas con varios campos en línea */
+#formMensual .row,
+#formFinales .row {
+  display: flex;
+  gap: 10px;
+}
+#formMensual .row > *,
+#formFinales .row > * { flex: 1; }
+
+/* Acciones / botones al final */
+#formMensual .detail-actions,
+#formFinales .detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Botón guardar */
+#formMensual button[type="submit"],
+#formFinales button[type="submit"],
+#formMensual .btn-save,
+#formFinales .btn-save {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background .14s ease;
+}
+#formMensual button[type="submit"]:hover,
+#formFinales button[type="submit"]:hover,
+#formMensual .btn-save:hover,
+#formFinales .btn-save:hover {
+  background: #003b8e;
+}
+
+/* Botón cancelar (si lo incorporas) */
+#formMensual .btn-cancel,
+#formFinales .btn-cancel {
+  background: #f3f4f6;
+  color: #222;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  cursor: pointer;
+  font-weight: 600;
+}
+#formMensual .btn-cancel:hover,
+#formFinales .btn-cancel:hover { background: #eaeaea; }
+
+/* Ajustes para el botón de cerrar (ya existe .detail-panel__close) */
+#modalMensual .detail-panel__close,
+#modalFinales .detail-panel__close {
+  background: transparent;
+  border: 0;
+  font-size: 1.35rem;
+  cursor: pointer;
+  color: rgba(0,0,0,0.6);
+  position: absolute;
+  top: 12px;
+  right: 14px;
+}
+
+/* =================== Lista de insumos (estilo) =================== */
+#insumosList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.insumo-item {
+  background: #eaeaea;
+  padding: 6px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+.insumo-item button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Pequeños ajustes responsive */
+@media (max-width: 520px) {
+  .detail-panel { width: 100%; right: -100%; }
+  .detail-panel.open { right: 0; }
+  #modalBecada .detail-panel__body { padding: 16px; }
+  #formBecada input, #formBecada select, #formBecada textarea { padding: 10px; font-size: 0.95rem; }
+}

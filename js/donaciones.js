@@ -1,12 +1,11 @@
-// --- donaciones.js ---
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
+  const QtoUSD = 0.1275; // 1 Q ≈ 0.1275 USD (ajusta según tipo de cambio actual)
 
   function isLoggedIn() {
     return !!token;
   }
 
-  // --- Obtener correo desde token JWT ---
   function getUserEmail() {
     if (!token) return null;
     try {
@@ -19,10 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- PAYPAL ---
   const paypalContainers = document.querySelectorAll(".paypal-container");
+
   paypalContainers.forEach((container) => {
     const parent = container.closest(".donacion-card, .causa-card");
     const input = parent.querySelector(".donation-amount");
-    const fixedAmount = container.dataset.amount ? parseFloat(container.dataset.amount) : null;
+    const fixedAmountQ = container.dataset.amount ? parseFloat(container.dataset.amount) : null;
 
     if (!isLoggedIn()) {
       container.innerHTML = `<p style="text-align:center">Inicia sesión para donar.</p>`;
@@ -30,67 +30,58 @@ document.addEventListener("DOMContentLoaded", () => {
       container.style.fontSize = "14px";
       container.style.padding = "10px";
       container.style.border = "1px dashed #ccc";
-      container.addEventListener("click", () => {
-        window.location.href = "../login/login.html";
-      });
+      container.addEventListener("click", () => { window.location.href = "../login/login.html"; });
       return;
     }
 
     paypal.Buttons({
+      style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'paypal' },
+
       onClick: (data, actions) => {
-        if (fixedAmount) return actions.resolve();
-        const v = input ? parseFloat(input.value) : 0;
-        if (!v || v <= 0) {
+        const vQ = input ? parseFloat(input.value) : fixedAmountQ;
+        if (!vQ || vQ <= 0) {
           alert("Ingrese un monto válido para PayPal.");
           return actions.reject();
         }
         return actions.resolve();
       },
-      createOrder: (data, actions) => {
-        let amount = fixedAmount;
-        if (input && input.value) amount = parseFloat(input.value);
 
-        const conversionRate = 8.2; // 1 USD = Q8.2
-        const usdAmount = (amount / conversionRate).toFixed(2);
+      createOrder: async (data, actions) => {
+        const amountQ = input ? parseFloat(input.value) : fixedAmountQ;
+        const amountUSD = (amountQ * QtoUSD).toFixed(2);
 
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: usdAmount,
-              currency_code: "USD"
-            }
-          }]
-        });
-      },
-      onApprove: (data, actions) => {
-        return actions.order.capture().then(details => {
-          const paidAmountUSD = details.purchase_units[0].amount.value;
-          const conversionRate = 8.2;
-          const paidAmountGTQ = (paidAmountUSD * conversionRate).toFixed(2);
-
-          alert(`Gracias por tu donación de Q.${paidAmountGTQ}, ${details.payer.name.given_name}!`);
-
-          fetch("http://localhost:4000/api/donations", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": "Bearer " + token
-            },
-            body: JSON.stringify({
-              orderId: details.id,
-              amount: paidAmountGTQ,
-              donorEmail: details.payer.email_address
-            })
+        const res = await fetch("http://localhost:4000/api/donations/create-order", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
+          },
+          body: JSON.stringify({ 
+            amount: amountUSD,
+            originalAmountQ: amountQ,
+            donorEmail: getUserEmail()
           })
-          .then(res => res.json())
-          .then(d => console.log("Donación registrada:", d))
-          .catch(err => console.error("Error al registrar donación:", err));
         });
+
+        const order = await res.json();
+        return order.id;
       },
+
+      onApprove: async (data, actions) => {
+        const res = await fetch(`http://localhost:4000/api/donations/capture-order/${data.orderID}`, {
+          method: "POST",
+          headers: { Authorization: "Bearer " + token }
+        });
+
+        const capture = await res.json();
+        alert(`Gracias por tu donación de Q.${capture.amount}, ${capture.payerName}!`);
+      },
+
       onError: (err) => {
         console.error("Error con PayPal:", err);
         alert("Hubo un problema al procesar tu donación con PayPal.");
-      }
+      },
+
     }).render(container);
   });
 
@@ -116,38 +107,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const donorEmail = getUserEmail();
       if (!donorEmail) {
-        alert("No se pudo obtener tu correo. Inicia sesión de nuevo.");
+        alert("No se pudo obtener tu correo. Inicia sesión nuevamente.");
         return;
       }
-
-      // --- Abrir ventana en blanco de inmediato ---
-      const paggoWindow = window.open("", "_blank");
 
       try {
         const res = await fetch("http://localhost:4000/api/donations/paggo", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
+            Authorization: "Bearer " + token
           },
           body: JSON.stringify({ amount, donorEmail, concept })
         });
 
         const data = await res.json();
-        console.log("Respuesta Paggo:", data);
-
-        if (data.result && data.result.link) {
-          paggoWindow.location.href = data.result.link;
-          alert("Se ha generado tu link de donación. Se abrirá en la nueva pestaña. ¡Gracias por tu apoyo!");
+        if (data.success && data.result?.link) {
+          window.open(data.result.link, "_blank");
         } else {
-          paggoWindow.close();
-          console.error("Error Paggo:", data);
-          alert("No se pudo generar el link de Paggo. Revisa la consola.");
+          console.error(data);
+          alert("No se pudo generar el link de Paggo.");
         }
       } catch (err) {
-        paggoWindow.close();
-        console.error("Error al llamar a Paggo:", err);
-        alert("Ocurrió un error al procesar tu donación con Paggo.");
+        console.error("Error Paggo:", err);
+        alert("Error al procesar Paggo.");
       }
     });
   });

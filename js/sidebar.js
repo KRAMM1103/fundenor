@@ -1,64 +1,90 @@
-// sidebar.js — inserta el sidebar solo para admins y ajusta el contenido
-
 document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+  const sidebar = document.querySelector(".sidebar");
+
+  if (!token || !sidebar) return;
+
   const user = JSON.parse(localStorage.getItem("user"));
-  const role = localStorage.getItem("role");
-
-  // Si no hay sesión o el rol no es admin, salir
-  if (!user || role !== "admin") return;
-
-  // Evitar insertar en páginas de admin ya existentes
-  const currentPage = window.location.pathname;
-  if (
-    currentPage.includes("admin.html") ||
-    currentPage.includes("becas.html") ||
-    currentPage.includes("seguimiento.html") ||
-    currentPage.includes("usuarios.html")
-  ) {
+  if (!user || !user.role) {
+    console.warn("No se encontró información de usuario o rol.");
     return;
   }
 
-  // Agregar clase al body para estilos especiales cuando hay sidebar
-  document.body.classList.add("with-sidebar");
+  const role = user.role;
 
-  // Crear el contenedor principal
-  const appDiv = document.createElement("div");
-  appDiv.classList.add("app");
+  // Limpiar sidebar anterior
+  sidebar.innerHTML = "";
 
-  // Insertar el sidebar
-  appDiv.innerHTML = `
-    <aside class="sidebar" id="sidebar">
-      <div class="brand">
-        <img src="img/logo.png" class="brand__logo" alt="Logo">
-      </div>
-      <nav class="menu">
-        <a href="admin.html" class="menu__item"><span class="ico">💰</span><span>Donaciones</span></a>
-        <a href="becas.html" class="menu__item"><span class="ico">🎓</span><span>Becas</span></a>
-        <a href="seguimiento.html" class="menu__item"><span class="ico">📊</span><span>Seguimiento</span></a>
-        <a href="usuarios.html" class="menu__item"><span class="ico">👥</span><span>Usuarios</span></a>
-      </nav>
-    </aside>
+  // === Marca / Encabezado ===
+  const brandDiv = document.createElement("div");
+  brandDiv.classList.add("brand");
+  brandDiv.innerHTML = `
+    <img src="../img/logo.png" alt="Fundenor" class="brand__logo">
+    <span class="brand__name">Fundenor</span>
   `;
+  sidebar.appendChild(brandDiv);
 
-  // Crear main y mover todo el contenido actual dentro de él
-  const mainContent = document.createElement("main");
-  mainContent.classList.add("main");
+  // === Contenedor de menú ===
+  const menuDiv = document.createElement("div");
+  menuDiv.classList.add("menu");
 
-  while (document.body.firstChild) {
-    mainContent.appendChild(document.body.firstChild);
+  // Definir enlaces según rol
+  let links = [];
+  if (role === "admin") {
+    links = [
+      { text: "Donaciones", href: "../admin.html", icon: "💰" },
+      { text: "Becas", href: "../becas.html", icon: "🎓" },
+      { text: "Seguimiento", href: "../seguimiento.html", icon: "📋" },
+      { text: "Usuarios", href: "../usuarios.html", icon: "👥" },
+    ];
+  } else if (role === "becasManager") {
+    links = [
+      { text: "Becas", href: "../becas.html", icon: "🎓" },
+      { text: "Seguimiento", href: "../seguimiento.html", icon: "📋" },
+    ];
+  } else {
+    // Usuarios normales no tienen sidebar
+    return;
   }
 
-  appDiv.appendChild(mainContent);
-  document.body.appendChild(appDiv);
+  // Renderizar enlaces
+  links.forEach(link => {
+    const a = document.createElement("a");
+    a.href = link.href;
+    a.classList.add("menu__item");
+    a.innerHTML = `<span class="ico">${link.icon}</span><span>${link.text}</span>`;
 
-  // Vincular evento de cerrar sesión
-  const logoutBtn = document.getElementById("logoutSidebarBtn");
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
-      window.location.href = "login/login.html";
-    });
-  }
+    // Marcar como activo si coincide la página actual
+    if (window.location.pathname.includes(link.href.split("/").pop())) {
+      a.classList.add("active");
+    }
+
+    menuDiv.appendChild(a);
+  });
+
+  sidebar.appendChild(menuDiv);
+
+  // === Sección inferior (logout) ===
+  const bottomDiv = document.createElement("div");
+  bottomDiv.classList.add("sidebar__bottom");
+
+  const logoutBtn = document.createElement("button");
+  logoutBtn.textContent = "Cerrar sesión";
+  logoutBtn.classList.add("logout-btn");
+  logoutBtn.style.padding = "10px 14px";
+  logoutBtn.style.background = "#004aad";
+  logoutBtn.style.color = "#fff";
+  logoutBtn.style.border = "none";
+  logoutBtn.style.borderRadius = "6px";
+  logoutBtn.style.cursor = "pointer";
+
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    window.location.href = "../login/login.html";
+  });
+
+  bottomDiv.appendChild(logoutBtn);
+  sidebar.appendChild(bottomDiv);
 });

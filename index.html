@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FUNDENOR AQAB'AL'</title>
@@ -8,66 +9,55 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<script src="js/sidebar.js"></script>
+<body class="preload">
+  <div class="app">
+    <aside class="sidebar"></aside>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const userRole = localStorage.getItem("role");
-    const adminElements = document.querySelectorAll(".admin-only");
-
-    if (userRole === "admin") {
-      adminElements.forEach(el => el.style.display = "block");
-    } else {
-      adminElements.forEach(el => el.style.display = "none");
-    }
-  });
-</script>
-
-<body>
-  <!-- HEADER -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">
-        <img src="img/logo.png" alt="Logo FUNDENOR AQAB'AL'">
-        <span>FUNDENOR AQAB'AL'</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li class="dropdown">
-          <a href="#quienes">Secciones ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="#quienes">Quiénes Somos</a></li>
-            <li><a href="#historia">Historia</a></li>
-            <li><a href="#trabajamos">Dónde Trabajamos</a></li>
-            <li><a href="#equipo">Equipo</a></li>
-            <li><a href="#mision">Misión & Visión</a></li>
-            <li><a href="#valores">Valores</a></li>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main">
+      <!-- HEADER -->
+      <header>
+        <nav class="navbar">
+          <div class="logo">
+            <img src="img/logo.png" alt="Logo FUNDENOR AQ'ABAL'">
+            <span>FUNDENOR AQ'AB'AL</span>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li class="dropdown">
+              <a href="#quienes">Secciones ▾</a>
+              <ul class="dropdown-menu">
+                <li><a href="#quienes">Quiénes Somos</a></li>
+                <li><a href="#historia">Historia</a></li>
+                <li><a href="#trabajamos">Dónde Trabajamos</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#mision">Misión & Visión</a></li>
+                <li><a href="#valores">Valores</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#programas">Programas ▾</a>
+              <ul class="dropdown-menu">
+                <li><a href="programas/programa1.html">Alimentación y Nutrición</a></li>
+                <li><a href="programas/programa2.html">Salud</a></li>
+                <li><a href="programas/programa3.html">Higiene y Hogar</a></li>
+                <li><a href="programas/programa4.html">Educación</a></li>
+                <li><a href="programas/programa5.html">Ayuda Humanitaria</a></li>
+              </ul>
+            </li>
+            <li><a href="donaciones/donaciones.html" class="btn-donar">Donar</a></li>
           </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#programas">Programas ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="programas/programa1.html">Alimentación y Nutrición</a></li>
-            <li><a href="programas/programa2.html">Salud</a></li>
-            <li><a href="programas/programa3.html">Higiene y Hogar</a></li>
-            <li><a href="programas/programa4.html">Educación</a></li>
-            <li><a href="programas/programa5.html">Entrega de Alimentos</a></li>
-          </ul>
-        </li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li><a href="donaciones/donaciones.html" class="btn-donar">Donar</a></li>
-      </ul>
-    </nav>
-  </header>
+        </nav>
+      </header>
 
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero-content">
-      <h1>FUNDENOR AQAB'AL'</h1>
-      <p>Fundación para el Desarrollo del Norte</p>
-      <a href="#programas" class="btn btn-primary">Conoce nuestros programas</a>
-    </div>
-  </section>
+      <!-- HERO -->
+      <section class="hero" id="inicio">
+        <div class="hero-content">
+          <h1>FUNDENOR AQ'AB'AL</h1>
+          <p>Fundación para el Desarrollo del Norte</p>
+          <a href="#programas" class="btn btn-primary">Conoce nuestros programas</a>
+        </div>
+      </section>
 
   <!-- QUIÉNES SOMOS -->
   <section id="quienes" class="section section-light">
@@ -81,7 +71,7 @@
         </p>
       </div>
       <div class="section-image">
-        <img src="img/programa2/jornada4.png" alt="Personas Fundación">
+        <img src="img/logo.png" alt="Personas Fundación">
       </div>
     </div>
   </section>
@@ -210,7 +200,7 @@
       </a>
       <a href="programas/programa5.html" class="card">
         <img src="img/prog5.png" alt="Entrega de Alimentos">
-        <h3>Entrega de Alimentos</h3>
+        <h3>Ayuda Humanitaria</h3>
       </a>
     </div>
   </section>
@@ -262,55 +252,141 @@
     </div>
   </section>
 
-<!-- SECCIÓN DONACIONES -->
-<section id="donaciones" class="section section-light">
-  <div class="section-content cta-donacion">
-    <div class="section-text">
-      <h2>¡Únete y Apoya con tu Donación!</h2>
-      <p>
-        Tu apoyo transforma vidas. Con tu contribución, podemos seguir llevando desarrollo, educación y bienestar
-        a las comunidades que más lo necesitan.
-      </p>
-      <div class="formas-donacion">
-        <div class="donacion-card">
-          <img src="img/icons/individual.webp" alt="Donación Individual">
-          <h3>Donación Individual</h3>
-        </div>
-        <div class="donacion-card">
-          <img src="img/icons/empresarial.png" alt="Donación Empresarial">
-          <h3>Donación Empresarial</h3>
-        </div>
-        <div class="donacion-card">
-          <img src="img/icons/causa.png" alt="Donación por Causa">
-          <h3>Donación por Causa</h3>
+<section id="historias" class="historias-section">
+  <h2>Historias de Éxito</h2>
+
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slide active">
+        <img src="img/historia1.jpg" alt="Historia 1">
+        <div class="historia-texto">
+          <h3>Nutrición</h3>
+          <p>Doña Sandra Cac Coy de la comunidad Satex I, del Municipio de Cobán, Alta Verapaz. Inicio su participación con  Fundenor en el 2021. Y es madre de la niña Lidia Anahy. Mediante una sesión de peso y talla con niños menores de 5 años, se detectó que la pequeña Lidia presentaba riesgo de signos visibles de desnutrición, como madre primeriza tenia conocimientos limitados sobre lactancia materna exclusiva y sobre alimentación infantil y la falta de recursos económicos, no contaban con una dieta balanceada. Doña Sandra nos comenta que la dieta de la menor consistía principalmente en tortilla, frijol, café y muy pocas veces el consumo de proteínas y diferentes vegetales. Se dio inicio con los talleres de la Tk de Nutrición, la práctica de preparación de alimentos nutritivos, entrega de bolsas de alimentos nutritivos para que la menor Lidia Anahy pueda consumir, también se inició con los talleres dentro  de la Tk de Agroecología, se estableció un huerto familiar para tener acceso a vegetales, la crianza de aves de corral, para asegurar el acceso a proteínas, y el seguimiento a peso y talla para verificar los avances de la menor y así mismo reforzar las buenas practicas. Al cumplir los 5 años la menor cuenta con peso y talla adecuado a su edad según Patrones de crecimiento infantil de la OMS, la familia ya incluye dentro de su dieta huevos, verduras y alimentos cosechados en el huerto familiar que son nutritivos. La familia ha asumido la responsabilidad de continuar con una alimentación saludable de Lidia y cumplir con la lactancia materna exclusiva para el hermanito de Lidia.</p>
         </div>
       </div>
-      <a href="donaciones/donaciones.html" class="btn btn-donar">¡Dona Ahora!</a>
+
+      <div class="slide">
+        <img src="img/historia2.jpg" alt="Historia 2">
+        <div class="historia-texto">
+          <h3>Salud Reproductiva</h3>
+          <p>Doña Ana Florentina Poc con 36 años de edad, de la comunidad de Sachoxa del municipio de Purulhá Baja Verapaz, se acaso a los 16 años con don Miguel Ixim Tiul, con quien procreó 4 hijos. Ha tenido una participación activa en los procesos que Fundenor desarrolla en su comunidad, el caso de doña Ana es ejemplo de autoestima, seguridad de sí misma y comprometida con la crianza digna de sus niños. Por lo que el tema de salud reproductiva le fue interesante para su vida. Luego de los talleres impartidos sobre el uso de los métodos anticonceptivos para el espaciamientos de embarazos, ella con mucho temor le comento a su esposo el uso de métodos anticonceptivos, la primera respuesta fue negativa por ser un tema tabu y el machismo imperante en la comunidad, sin embargo ella en su insistencia su esposo comprendió la importancia y juntos decidieron utilizar un método anticonceptivo, desde entonces ella lleva 4 años utilizando un método no permanente de planificación familiar.  Ella comenta que es importante que cada familia reconociera que el espaciamiento de embarazos es muy importante, ya que en su comunidad no cuentan servicios básicos como el agua, y que no son capaces de mantener a una familia numerosa, así un sinfín de necesidades lo que perjudica principalmente a los niños. Doña Ana agradece la presencia de Fundenor en su comunidad por asesorarla acerca planificación familiar, ya que se casó a temprana edad y enfrento varios retos de salud y en el cuidado de sus hijos.</p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img src="img/historia3.jpg" alt="Historia 3">
+        <div class="historia-texto">
+          <h3>Agroecología</h3>
+          <p>Doña Paulina Quej mujer Qeqchi con 40 años de edad, de la comunidad del Esfuerzo Chejel a dos horas de distancia de la cabecera municipal de Purulha Baja Verapaz. Doña Paulina ha demostrado que con fe y perseverancia se puede lograr un cambio de vida sostenible, pese a los obstáculos en su vida, como el fuerte accidente que le ocurrió a su esposo, dejándolo discapacitado. Lo que género que la familia pasara precariedades al no tener a su esposo dispuesto. Sin embargo al interactuar con ella y mostrarle alternativas de producción para la obtención de sus alimentos, ella encontró un consuelo y desde entonces ha desarrollado las buenas prácticas de agroecológicas  y de esta manera se volvió la cabeza de familia en la que involucro a sus niños mayores en la crianza de aves y a establecer un huerto en el que siembra y cultiva diferentes hortalizas y hiervas comestibles. En la actualidad ella motiva a las demás participantes dentro de las escuelas comunitarias, a producir sus propios alimentos ya que durante todo el año ella cuenta con una dieta balanceada con la producción de su huerto y la crianza de sus aves de corral. Ella menciona que aprender este trabajo fue su salvación y oportunidad de mejorar la vida de su familia. </p>
+        </div>
+      </div>
     </div>
-    <div class="section-image">
-      <img src="img/programa4/comunitarias3.png" alt="Personas beneficiadas">
-    </div>
+
+    <!-- Botones de navegación -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
   </div>
 </section>
 
-
-  <!-- CONTACTO -->
-  <section id="contacto" class="section section-light">
-    <h2>Contacto</h2>
-    <form class="contact-form">
-      <input type="text" placeholder="Nombre completo" required>
-      <input type="email" placeholder="Correo electrónico" required>
-      <textarea placeholder="Escribe tu mensaje" rows="5" required></textarea>
-      <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
+  <!-- SECCIÓN DONACIONES -->
+  <section id="donaciones" class="section section-light">
+    <div class="section-content cta-donacion">
+      <div class="section-text">
+        <h2>¡Únete y Apoya con tu Donación!</h2>
+        <p>
+          Tu apoyo transforma vidas. Con tu contribución, podemos seguir llevando desarrollo, educación y bienestar
+          a las comunidades que más lo necesitan.
+        </p>
+        <div class="formas-donacion">
+          <div class="donacion-card">
+            <img src="img/icons/individual.webp" alt="Donación Individual">
+            <h3>Donación Individual</h3>
+          </div>
+          <div class="donacion-card">
+            <img src="img/icons/empresarial.png" alt="Donación Empresarial">
+            <h3>Donación Empresarial</h3>
+          </div>
+          <div class="donacion-card">
+            <img src="img/icons/causa.png" alt="Donación por Causa">
+            <h3>Donación por Causa</h3>
+          </div>
+        </div>
+        <a href="donaciones/donaciones.html" class="btn btn-donar">¡Dona Ahora!</a>
+      </div>
+      <div class="section-image">
+        <img src="img/programa4/comunitarias3.png" alt="Personas beneficiadas">
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 FUNDENOR AQAB'AL' - Todos los derechos reservados</p>
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src="../img/logo.png" alt="Logo FUNDENOR AQ'AB'AL" class="footer-logo">
+      </div>
+
+      <div class="footer-center">
+        <p>&copy; 2025 FUNDENOR AQ'AB'AL — Todos los derechos reservados</p>
+        <p class="footer-dev">
+          Universidad Mariano Gálvez de Guatemala, Sede Cobán A.V.<br>
+          Ingeniería en Sistemas de Información y Ciencias de la Computación — Décimo Ciclo
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <img src="../img/logo_umg.png" alt="Logo UMG" class="footer-logo">
+      </div>
+    </div>
   </footer>
 
+  <!-- SCRIPTS: main primero (si lo usas), luego auth, luego sidebar -->
   <script src="js/main.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script src="js/historias.js"></script>
+
+  <!-- script para mostrar elementos admin-only (se ejecuta cuando el DOM y auth.js ya cargaron) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const userRole = localStorage.getItem("role");
+      const adminElements = document.querySelectorAll(".admin-only");
+
+      if (userRole === "admin") {
+        adminElements.forEach(el => el.style.display = "block");
+      } else {
+        adminElements.forEach(el => el.style.display = "none");
+      }
+    });
+  </script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const role = localStorage.getItem("role");
+  const body = document.body;
+  const sidebar = document.querySelector(".sidebar");
+
+  // Mostrar sidebar sólo a admin o becasManager
+  if (role === "admin" || role === "becasManager") {
+    body.classList.add("with-sidebar");
+
+    try {
+      // Si tienes un archivo HTML del sidebar, se puede cargar aquí
+      // const res = await fetch("/components/sidebar.html");
+      // sidebar.innerHTML = await res.text();
+
+      // O si se genera con JS dinámico, puedes dejarlo vacío y dejar que sidebar.js lo renderice
+    } catch (err) {
+      console.error("Error cargando sidebar:", err);
+    }
+  } else {
+    if (sidebar) sidebar.remove();
+  }
+
+  // ✅ Finalmente, mostramos el contenido ya sin parpadeo
+  body.classList.remove("preload");
+});
+</script>
+
 </body>
 </html>

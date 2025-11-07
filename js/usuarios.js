@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModal = document.getElementById("closeModalUser");
   const form = document.getElementById("formUser");
   const tableBody = document.querySelector("#tableUsuarios tbody");
+
   const totalUsuariosEl = document.getElementById("totalUsuarios");
   const totalAdminsEl = document.getElementById("totalAdmins");
   const totalNormalesEl = document.getElementById("totalNormales");
+  const totalBecasEl = document.getElementById("totalBecas"); // ⚙️ NUEVO (si lo agregaste en el HTML)
 
   let editId = null;
 
@@ -30,9 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       if (!res.ok) throw new Error("Error al obtener los usuarios");
 
-      // ✅ Ajuste aquí
-      const { usuarios: users, totalUsers, admins, normales } = await res.json();
+      const data = await res.json();
+      const users = data.usuarios || [];
+      const totalUsers = data.totalUsers || users.length;
+      const admins = data.admins || users.filter(u => u.role === "admin").length;
+      const normales = data.normales || users.filter(u => u.role === "user").length;
+      const becasManagers = data.becasManagers || users.filter(u => u.role === "becasManager").length;
 
+      // Limpiar tabla
       tableBody.innerHTML = "";
 
       users.forEach(u => {
@@ -50,10 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         tableBody.appendChild(tr);
       });
 
-      // Actualizar los cards con los totales
+      // Actualizar totales
       totalUsuariosEl.textContent = totalUsers;
       totalAdminsEl.textContent = admins;
       totalNormalesEl.textContent = normales;
+      if (totalBecasEl) totalBecasEl.textContent = becasManagers;
 
       attachTableEvents();
     } catch (err) {
@@ -67,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const data = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
       password: document.getElementById("password").value,
       role: document.getElementById("role").value
     };
@@ -128,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const u = await res.json();
           document.getElementById("name").value = u.name;
           document.getElementById("email").value = u.email;
-          document.getElementById("password").value = ""; // no cambiar a menos que se ingrese
+          document.getElementById("password").value = "";
           document.getElementById("role").value = u.role;
 
           modal.classList.add("open");

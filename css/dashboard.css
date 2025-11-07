@@ -255,3 +255,61 @@ form input, form select {
 .btn-guardar:hover {
   background: #00337a;
 }
+/* =================== FOOTER =================== */
+footer { background: #004aad; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+footer {
+  background: #004aad;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-left,
+.footer-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-center {
+  flex: 2;
+  text-align: center;
+}
+
+.footer-logo {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-dev {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 700px) {
+  .footer-container {
+    flex-direction: column;
+  }
+  .footer-left,
+  .footer-right {
+    order: 1;
+  }
+  .footer-center {
+    order: 2;
+  }
+}

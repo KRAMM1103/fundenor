@@ -24,7 +24,7 @@ function logout() {
   localStorage.removeItem("user");
   localStorage.removeItem("token");
   localStorage.removeItem("role");
-  window.location.href = "/login/login.html"; // ✅ ruta absoluta
+  window.location.href = "/login/login.html";
 }
 
 // --- FUNCIÓN EXTRA: Validar acceso admin ---
@@ -36,7 +36,16 @@ function checkAdminAccess() {
   }
 }
 
-// --- ACTUALIZAR NAVBAR ---
+// --- NUEVO: Validar acceso de becasManager ---
+function checkBecasManagerAccess() {
+  const role = localStorage.getItem("role");
+  if (role !== "becasManager" && role !== "admin") {
+    alert("Acceso restringido. Solo personal autorizado.");
+    window.location.href = "/login/login.html";
+  }
+}
+
+// --- ACTUALIZAR NAVBAR / SESIÓN ---
 function updateNavbar() {
   const navbar = document.querySelector(".navbar");
   if (!navbar) return;
@@ -57,7 +66,7 @@ function updateNavbar() {
   if (existingSession && user) {
     div.innerHTML = `
       <span style="margin-right: 10px; font-weight: 600; color: black;">
-        👋 Hola, ${user.name}
+        👋 Hola, ${user.name} (${role})
       </span>
       <button id="logoutBtn" style="background: white; color: black; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
         Cerrar sesión
@@ -104,9 +113,12 @@ if (loginForm) {
       saveSession(data.user, data.token);
       alert("Inicio de sesión exitoso");
 
-      // ✅ Solo una redirección según rol
-      if (data.user.role === "admin") {
+      // ✅ Redirección según rol
+      const role = data.user.role;
+      if (role === "admin") {
         window.location.href = "/admin.html";
+      } else if (role === "becasManager") {
+        window.location.href = "/becas.html";
       } else {
         window.location.href = "/index.html";
       }

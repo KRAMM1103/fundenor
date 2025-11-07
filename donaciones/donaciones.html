@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Donaciones — FUNDENOR AQAB'AL'</title>
   <link rel="stylesheet" href="../css/donaciones.css">
-  
-  <!-- SDK de PayPal -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AQ46bznywSgwFgjuFTopQvbbRiy4eOTWOkrBLf_wdASkQ50wVqZZRCvN8xJfaL5rlqNBjfRn0FNHaoFy&currency=USD"></script>
+
+  <!-- SDK de PayPal Sandbox -->
+  <script src="https://www.paypal.com/sdk/js?client-id=ASuwPOhwrttwutC4okOwJUqg492NaMR79JE9FEFURafLw6T2dNcqDoIOrSRyutjASTRTolwkfLZ8yONG&currency=USD"></script>
 </head>
 <body>
 
@@ -20,7 +20,6 @@
       </div>
       <ul class="nav-links">
         <li><a href="../index.html">Inicio</a></li>
-        
         <li class="dropdown">
           <a href="#programas">Programas ▾</a>
           <ul class="dropdown-menu">
@@ -28,7 +27,7 @@
             <li><a href="../programas/programa2.html">Salud</a></li>
             <li><a href="../programas/programa3.html">Higiene y Hogar</a></li>
             <li><a href="../programas/programa4.html">Educación</a></li>
-            <li><a href="../programas/programa5.html">Entrega de Alimentos</a></li>
+            <li><a href="../programas/programa5.html">Ayuda Humanitaria</a></li>
           </ul>
         </li>
         <li><a href="../donaciones/donaciones.html" class="btn-donar">Donar</a></li>
@@ -48,102 +47,115 @@
 
     <!-- TIPOS DE DONACIÓN -->
     <section class="section donaciones">
-  <h2>Opciones de Donación</h2>
-  <div class="donaciones-grid">
+      <h2>Opciones de Donación</h2>
+      <div class="donaciones-grid">
 
-    <!-- Donación Individual -->
-    <div class="donacion-card">
-      <img src="../img/icons/individual.webp" alt="Donación Individual">
-      <h3>Donación Individual</h3>
-      <p>Contribuye de forma personal y directa a nuestros programas.</p>
-      <span class="currency-symbol">Q</span>
-      <input type="number" min="1" placeholder="Ingresa el monto" class="donation-amount" />
-      <button class="paggo-btn" data-amount="">DONAR</button>
-      <div class="paypal-container"></div>
-    </div>
+        <!-- Donación Individual -->
+        <div class="donacion-card">
+          <img src="../img/icons/individual.webp" alt="Donación Individual">
+          <h3>Donación Individual</h3>
+          <p>Contribuye de forma personal y directa a nuestros programas.</p>
+          <span class="currency-symbol">Q</span>
+          <input type="number" min="1" placeholder="Ingresa el monto" class="donation-amount" />
+          <button class="paggo-btn">DONAR</button>
+          <div class="paypal-container"></div>
+        </div>
 
-    <!-- Donación Empresarial -->
-    <div class="donacion-card">
-      <img src="../img/icons/empresarial.png" alt="Donación Empresarial">
-      <h3>Donación Empresarial</h3>
-      <p>Tu empresa puede apoyar a nuestras comunidades mediante alianzas estratégicas.</p>
-      <span class="currency-symbol">Q</span>
-      <input type="number" min="1" placeholder="Ingresa el monto" class="donation-amount" />
-       <button class="paggo-btn" data-amount="">DONAR</button>
-      <div class="paypal-container"></div>
-    </div>
+        <!-- Donación Empresarial -->
+        <div class="donacion-card">
+          <img src="../img/icons/empresarial.png" alt="Donación Empresarial">
+          <h3>Donación Empresarial</h3>
+          <p>Tu empresa puede apoyar a nuestras comunidades mediante alianzas estratégicas.</p>
+          <span class="currency-symbol">Q</span>
+          <input type="number" min="1" placeholder="Ingresa el monto" class="donation-amount" />
+          <button class="paggo-btn">DONAR</button>
+          <div class="paypal-container"></div>
+        </div>
 
-    <!-- Donación por Causa -->
-    <div class="donacion-card">
-      <img src="../img/icons/causa.png" alt="Donación por Causa">
-      <h3>Selecciona una causa</h3>
-      <p>Selecciona la causa que deseas apoyar y haz tu contribución.</p>
-      <a href="#causas" class="btn-causa">Ver Causas</a>
-    </div>
+        <!-- Donación por Causa -->
+        <div class="donacion-card">
+          <img src="../img/icons/causa.png" alt="Donación por Causa">
+          <h3>Selecciona una causa</h3>
+          <p>Selecciona la causa que deseas apoyar y haz tu contribución.</p>
+          <a href="#causas" class="btn-causa">Ver Causas</a>
+        </div>
 
-  </div>
+      </div>
 
-  <!-- DONACIÓN POR CAUSA -->
-  <div id="causas" class="causa-grid">
+      <!-- DONACIÓN POR CAUSA -->
+      <div id="causas" class="causa-grid">
 
-    <div class="causa-card">
-      <img src="../img/icons/comunitarias.png" alt="Beca">
-      <h4>1 Beca<br>Q.100</h4>
-      <span class="currency-symbol">Q</span>
-      <input type="number" min="1" placeholder="Ingresa el monto" class="donation-amount" value="100" />
-      <button class="paggo-btn" data-amount="10.00">DONAR</button>
-      <div class="paypal-container" data-amount="12.00"></div>
-    </div>
+        <div class="causa-card">
+          <img src="../img/icons/comunitarias.png" alt="Beca">
+          <h4>1 Beca</h4>
+          <span class="currency-symbol">Q</span>
+          <input type="number" min="1" value="100" class="donation-amount" />
+          <button class="paggo-btn">DONAR</button>
+          <div class="paypal-container" data-amount="12.00"></div>
+        </div>
 
-    <div class="causa-card">
-      <img src="../img/icons/nutricion.png" alt="Alimentos">
-      <h4>Alimentos para 1 niño<br>Q.100</h4>
-      <span class="currency-symbol">Q</span>
-      <input type="number" min="1" placeholder="Ingresa el monto" class="donation-amount" value="100" />
-      <button class="paggo-btn" data-amount="10.00">DONAR</button>
-      <div class="paypal-container" data-amount="12.00"></div>
-    </div>
+        <div class="causa-card">
+          <img src="../img/icons/nutricion.png" alt="Alimentos">
+          <h4>Alimentos para 1 niño</h4>
+          <span class="currency-symbol">Q</span>
+          <input type="number" min="1" value="100" class="donation-amount" />
+          <button class="paggo-btn">DONAR</button>
+          <div class="paypal-container" data-amount="12.00"></div>
+        </div>
 
-    <div class="causa-card">
-      <img src="../img/icons/infraestructura.png" alt="Infraestructura">
-      <h4>Mejoras de infraestructura<br>Q.150</h4>
-      <span class="currency-symbol">Q</span>
-      <input type="number" min="1" placeholder="Ingresa el monto" class="donation-amount" value="150" />
-      <button class="paggo-btn" data-amount="10.00">DONAR</button>
-      <div class="paypal-container" data-amount="18.00"></div>
-    </div>
+        <div class="causa-card">
+          <img src="../img/icons/infraestructura.png" alt="Infraestructura">
+          <h4>Mejoras de infraestructura</h4>
+          <span class="currency-symbol">Q</span>
+          <input type="number" min="1" value="150" class="donation-amount" />
+          <button class="paggo-btn">DONAR</button>
+          <div class="paypal-container" data-amount="18.00"></div>
+        </div>
 
-    <div class="causa-card">
-      <img src="../img/icons/sexual.png" alt="Métodos Anticonceptivos">
-      <h4>Métodos Anticonceptivos<br>Q.50</h4>
-      <span class="currency-symbol">Q</span>
-      <input type="number" min="1" placeholder="Ingresa el monto" class="donation-amount" value="50" />
-      <button class="paggo-btn" data-amount="10.00">DONAR</button>
-      <div class="paypal-container" data-amount="6.00"></div>
-    </div>
+        <div class="causa-card">
+          <img src="../img/icons/sexual.png" alt="Métodos Anticonceptivos">
+          <h4>Métodos Anticonceptivos</h4>
+          <span class="currency-symbol">Q</span>
+          <input type="number" min="1" value="50" class="donation-amount" />
+          <button class="paggo-btn">DONAR</button>
+          <div class="paypal-container" data-amount="6.00"></div>
+        </div>
 
-    <div class="causa-card">
-      <img src="../img/icons/carrera.png" alt="Carrera 10k">
-      <h4>Carrera 10k para cambiar historias<br>Q.100</h4>
-      <span class="currency-symbol">Q</span>
-      <input type="number" min="1" placeholder="Ingresa el monto" class="donation-amount" value="100" />
-      <button class="paggo-btn" data-amount="10.00">DONAR</button>
-      <div class="paypal-container" data-amount="13.00"></div>
-    </div>
+        <div class="causa-card">
+          <img src="../img/icons/carrera.png" alt="Carrera 10k">
+          <h4>Carrera 10k para cambiar historias</h4>
+          <span class="currency-symbol">Q</span>
+          <input type="number" min="1" value="100" class="donation-amount" />
+          <button class="paggo-btn">DONAR</button>
+          <div class="paypal-container" data-amount="13.00"></div>
+        </div>
 
-  </div>
-</section>
-
-
-    <!-- FOOTER -->
-    <footer class="program-footer">
-      <p>&copy; 2025 FUNDENOR AQAB'AL' — Todos los derechos reservados</p>
-    </footer>
+      </div>
+    </section>
   </div>
 
   <!-- JS -->
   <script src="../js/auth.js"></script>
   <script src="../js/donaciones.js"></script>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src="../img/logo.png" alt="Logo FUNDENOR AQ'AB'AL" class="footer-logo">
+      </div>
+      <div class="footer-center">
+        <p>&copy; 2025 FUNDENOR AQ'AB'AL — Todos los derechos reservados</p>
+        <p class="footer-dev">
+          Universidad Mariano Gálvez de Guatemala, Sede Cobán A.V.<br>
+          Ingeniería en Sistemas de Información y Ciencias de la Computación — Décimo Ciclo
+        </p>
+      </div>
+      <div class="footer-right">
+        <img src="../img/logo_umg.png" alt="Logo UMG" class="footer-logo">
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>

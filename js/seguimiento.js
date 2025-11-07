@@ -1,106 +1,193 @@
-// seguimiento.js
 document.addEventListener("DOMContentLoaded", () => {
+  const API_URL = "http://localhost:4000/api";
+
+  // ================== SELECT BECADA ==================
   const selectBecada = document.getElementById("selectBecada");
-  const tableMensual = document.querySelector("#tableMensual tbody");
-  const tableFinales = document.querySelector("#tableFinales tbody");
-
-  const btnNewMensual = document.getElementById("btnNewSeguimiento");
-  const modalMensual = document.getElementById("modalMensual");
-  const closeModalMensual = document.getElementById("closeModalMensual");
-  const formMensual = document.getElementById("formMensual");
-
-  const modalFinales = document.getElementById("modalFinales");
-  const closeModalFinales = document.getElementById("closeModalFinales");
-  const formFinales = document.getElementById("formFinales");
-
-  const API_URL = "http://localhost:4000/api"; // Cambiar si el backend está en otro puerto
-
-  // ================== MODALES ==================
-  btnNewMensual.addEventListener("click", () => {
-    if (!selectBecada.value) {
-      alert("Selecciona primero una becada");
-      return;
-    }
-    formMensual.reset();
-    modalMensual.classList.add("open");
-  });
-
-  closeModalMensual.addEventListener("click", () =>
-    modalMensual.classList.remove("open")
-  );
-  closeModalFinales.addEventListener("click", () =>
-    modalFinales.classList.remove("open")
-  );
-
-  // ================== CARGAR BECADAS EN SELECT ==================
   async function loadBecadas() {
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(`${API_URL}/admin/becadas`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
       const data = await res.json();
-
       selectBecada.innerHTML = `<option value="">-- Selecciona una becada --</option>`;
       const becadas = Array.isArray(data) ? data : data.becadas;
       if (becadas && becadas.length > 0) {
-  becadas.forEach((b) => {
-      const opt = document.createElement("option");
-      opt.value = b.id;
-      opt.textContent = b.nombre;
-      selectBecada.appendChild(opt);
-    });
-  } else {
-    alert("No hay becadas registradas.");
-  }
+        becadas.forEach((b) => {
+          const opt = document.createElement("option");
+          opt.value = b.id;
+          opt.textContent = `${b.nombres} ${b.apellidos || ""}`;
+          selectBecada.appendChild(opt);
+        });
+      }
     } catch (err) {
       console.error(err);
       alert("❌ Error al cargar becadas");
     }
   }
 
+  // ================== VARIABLES ==================
+  // Modal mensual
+  const modalMensual = document.getElementById("modalMensual");
+  const btnNewMensual = document.getElementById("btnNewSeguimiento");
+  const closeModalMensual = document.getElementById("closeModalMensual");
+  const formMensual = document.getElementById("formMensual");
+  const tableMensual = document.querySelector("#tableMensual tbody");
+  let editIdMensual = null;
+
+  // Modal finales
+  const modalFinales = document.getElementById("modalFinales");
+  const btnNewDatosFinales = document.getElementById("btnNewDatosFinales");
+  const closeModalFinales = document.getElementById("closeModalFinales");
+  const formFinales = document.getElementById("formFinales");
+  const tableFinales = document.querySelector("#tableFinales tbody");
+  let editIdFinales = null;
+
+  // Insumos dinámicos
+  const addInsumoBtn = document.getElementById("addInsumoBtn");
+  const insumoInput = document.getElementById("insumoInput");
+  const insumosList = document.getElementById("insumosList");
+  let insumosArray = [];
+
+  // ================== MODALES ==================
+  btnNewMensual.addEventListener("click", () => {
+    if (!selectBecada.value) return alert("Selecciona primero una becada");
+    formMensual.reset();
+    editIdMensual = null;
+    modalMensual.classList.add("open");
+  });
+  closeModalMensual.addEventListener("click", () => {
+    formMensual.reset();
+    modalMensual.classList.remove("open");
+  });
+
+  btnNewDatosFinales.addEventListener("click", () => {
+    if (!selectBecada.value) return alert("Selecciona primero una becada");
+    formFinales.reset();
+    insumosList.innerHTML = "";
+    insumosArray = [];
+    editIdFinales = null;
+    modalFinales.classList.add("open");
+  });
+  closeModalFinales.addEventListener("click", () => {
+    formFinales.reset();
+    insumosList.innerHTML = "";
+    insumosArray = [];
+    const papeleriaCheckboxes = document.querySelectorAll("#papeleriaChecklist input[type=checkbox]");
+    papeleriaCheckboxes.forEach(cb => cb.checked = false);
+    modalFinales.classList.remove("open");
+  });
+
+  // ================== INSUMOS DINÁMICOS ==================
+  addInsumoBtn.addEventListener("click", () => {
+    const valor = insumoInput.value.trim();
+    if (!valor) return;
+    if (insumosArray.includes(valor)) return alert("Este insumo ya fue agregado");
+
+    insumosArray.push(valor);
+    const item = document.createElement("span");
+    item.classList.add("insumo-item");
+    item.textContent = valor;
+
+    const removeBtn = document.createElement("button");
+    removeBtn.type = "button";
+    removeBtn.textContent = "x";
+    removeBtn.addEventListener("click", () => {
+      insumosArray = insumosArray.filter(i => i !== valor);
+      item.remove();
+    });
+
+    item.appendChild(removeBtn);
+    insumosList.appendChild(item);
+    insumoInput.value = "";
+  });
+
   // ================== CARGAR TABLAS ==================
   async function loadSeguimiento() {
     const becadaId = selectBecada.value;
     if (!becadaId) return;
 
+    const token = localStorage.getItem("token");
+
+    // --- Seguimiento mensual ---
     try {
-      const token = localStorage.getItem("token");
-
-      // Seguimiento mensual
-      const resMensual = await fetch(
-        `${API_URL}/admin/seguimiento/mensual/${becadaId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const resMensual = await fetch(`${API_URL}/admin/seguimiento/mensual/${becadaId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       const mensual = await resMensual.json();
-
       tableMensual.innerHTML = "";
-      mensual.forEach((m) => {
+      mensual.forEach(m => {
         const tr = document.createElement("tr");
+        let sesionesResumen = "";
+        for (let i = 1; i <= 7; i++) {
+          const tema = m[`sesion${i}_tema`] || "-";
+          const asistencia = m[`sesion${i}_asistencia`] ? "SI" : "NO";
+          sesionesResumen += `S${i}: ${tema} (${asistencia})<br>`;
+        }
+        sesionesResumen += `Encuentro Anual: ${m.asistenciaEncuentroAnual ? "SI" : "NO"}`;
         tr.innerHTML = `
           <td>${m.mes}</td>
-          <td>${m.principalNecesidad}</td>
-          <td>${m.sesion1_tema || ""}</td>
-          <td>${m.sesion2_tema || ""}</td>
-          <td>${m.sesion3_tema || ""}</td>
-          <td>${m.sesion4_tema || ""}</td>
-          <td>${m.sesion5_tema || ""}</td>
-          <td>${m.sesion6_tema || ""}</td>
-          <td>${m.sesion7_tema || ""}</td>
+          <td>${sesionesResumen}</td>
+          <td>
+            <button class="btnEditMensual" data-id="${m.id}">✏️</button>
+            <button class="btnDeleteMensual" data-id="${m.id}">🗑️</button>
+          </td>
         `;
         tableMensual.appendChild(tr);
       });
 
-      // Datos finales
-      const resFinales = await fetch(
-        `${API_URL}/admin/seguimiento/finales/${becadaId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      const finales = await resFinales.json();
+      // Editar mensual
+      document.querySelectorAll(".btnEditMensual").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.dataset.id;
+          editIdMensual = id;
+          try {
+            const res = await fetch(`${API_URL}/admin/seguimiento/mensual/registro/${id}`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            const data = await res.json();
+            formMensual.reset();
+            document.getElementById("mes").value = data.mes;
+            for (let i = 1; i <= 7; i++) {
+              document.getElementById(`sesion${i}`).value = data[`sesion${i}_tema`] || "";
+              document.getElementById(`asistencia${i}`).value = data[`sesion${i}_asistencia`] ? "true" : "false";
+            }
+            document.getElementById("asistenciaEncuentro").value = data.asistenciaEncuentroAnual ? "true" : "false";
+            modalMensual.classList.add("open");
+          } catch (err) {
+            console.error(err);
+            alert("❌ No se pudo cargar el registro para editar");
+          }
+        });
+      });
 
+      // Eliminar mensual
+      document.querySelectorAll(".btnDeleteMensual").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.dataset.id;
+          if (!confirm("¿Seguro que deseas eliminar este registro mensual?")) return;
+          try {
+            await fetch(`${API_URL}/admin/seguimiento/mensual/${id}`, {
+              method: "DELETE",
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            loadSeguimiento();
+          } catch (err) {
+            console.error(err);
+            alert("❌ Error al eliminar el registro mensual");
+          }
+        });
+      });
+    } catch (err) { console.error(err); }
+
+    // --- Datos finales ---
+    try {
+      const resFinales = await fetch(`${API_URL}/admin/seguimiento/finales/${becadaId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const finales = await resFinales.json();
       tableFinales.innerHTML = "";
-      finales.forEach((f) => {
+      finales.forEach(f => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${f.anio}</td>
@@ -108,113 +195,155 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>${f.estadoCiclo}</td>
           <td>${f.papeleriaCompleta ? "Sí" : "No"}</td>
           <td>${f.solicitudContinuidad ? "Sí" : "No"}</td>
+          <td>
+            <button class="btnEditFinales" data-id="${f.id}">✏️</button>
+            <button class="btnDeleteFinales" data-id="${f.id}">🗑️</button>
+          </td>
         `;
         tableFinales.appendChild(tr);
       });
-    } catch (err) {
-      console.error(err);
-      alert("❌ Error al cargar el seguimiento");
-    }
+
+      // Editar finales
+      document.querySelectorAll(".btnEditFinales").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.dataset.id;
+          editIdFinales = id;
+          try {
+            const res = await fetch(`${API_URL}/admin/seguimiento/finales/${id}`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            const f = await res.json();
+            formFinales.reset();
+            insumosArray = f.insumosRecibidos ? f.insumosRecibidos.split(", ") : [];
+            insumosList.innerHTML = "";
+            insumosArray.forEach(val => {
+              const item = document.createElement("span");
+              item.classList.add("insumo-item");
+              item.textContent = val;
+              const removeBtn = document.createElement("button");
+              removeBtn.type = "button";
+              removeBtn.textContent = "x";
+              removeBtn.addEventListener("click", () => {
+                insumosArray = insumosArray.filter(i => i !== val);
+                item.remove();
+              });
+              item.appendChild(removeBtn);
+              insumosList.appendChild(item);
+            });
+            document.getElementById("anio").value = f.anio;
+            document.getElementById("estadoCiclo").value = f.estadoCiclo;
+            const papeleriaCheckboxes = document.querySelectorAll("#papeleriaChecklist input[type=checkbox]");
+            papeleriaCheckboxes.forEach(cb => cb.checked = f.papeleriaCompleta);
+            document.getElementById("solicitudContinuidad").value = f.solicitudContinuidad ? "true" : "false";
+            modalFinales.classList.add("open");
+          } catch (err) {
+            console.error(err);
+            alert("❌ No se pudo cargar el registro final para editar");
+          }
+        });
+      });
+
+      // Eliminar finales
+      document.querySelectorAll(".btnDeleteFinales").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.dataset.id;
+          if (!confirm("¿Seguro que deseas eliminar este registro final?")) return;
+          try {
+            await fetch(`${API_URL}/admin/seguimiento/finales/${id}`, {
+              method: "DELETE",
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            loadSeguimiento();
+          } catch (err) {
+            console.error(err);
+            alert("❌ Error al eliminar el registro final");
+          }
+        });
+      });
+    } catch (err) { console.error(err); }
   }
 
-  // ================== SELECCIÓN DE BECADA ==================
   selectBecada.addEventListener("change", loadSeguimiento);
 
-  // ================== GUARDAR SEGUIMIENTO MENSUAL ==================
-  formMensual.addEventListener("submit", async (e) => {
+  // ================== GUARDAR ==================
+  formMensual.addEventListener("submit", async e => {
     e.preventDefault();
+    if (!selectBecada.value) return alert("Selecciona una becada antes de guardar el seguimiento");
 
-    if (!selectBecada.value) {
-      alert("Selecciona una becada antes de guardar el seguimiento");
-      return;
+    const sesiones = [];
+    for (let i = 1; i <= 7; i++) {
+      const tema = document.getElementById(`sesion${i}`).value;
+      const asistencia = document.getElementById(`asistencia${i}`).value === "true";
+      sesiones.push({ tema, asistencia });
     }
 
     const data = {
       becadaId: selectBecada.value,
       mes: document.getElementById("mes").value,
-      principalNecesidad: document.getElementById("principalNecesidad").value,
-      sesiones: [
-        document.getElementById("sesion1").value,
-        document.getElementById("sesion2").value,
-        document.getElementById("sesion3").value,
-        document.getElementById("sesion4").value,
-        document.getElementById("sesion5").value,
-        document.getElementById("sesion6").value,
-        document.getElementById("sesion7").value,
-      ],
+      sesiones,
+      asistenciaEncuentro: document.getElementById("asistenciaEncuentro").value === "true",
     };
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`${API_URL}/admin/seguimiento/mensual`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+      const url = editIdMensual ? `${API_URL}/admin/seguimiento/mensual/${editIdMensual}` : `${API_URL}/admin/seguimiento/mensual`;
+      const method = editIdMensual ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(data),
       });
+      if (!res.ok) throw new Error("Error al guardar el seguimiento mensual");
 
-      const result = await res.json();
-
-      if (res.ok) {
-        alert("✅ Seguimiento mensual registrado correctamente");
-        formMensual.reset();
-        modalMensual.classList.remove("open");
-        loadSeguimiento();
-      } else {
-        alert("❌ " + (result.message || "No se pudo registrar"));
-      }
+      alert(editIdMensual ? "✏️ Seguimiento mensual editado" : "✅ Seguimiento mensual registrado");
+      formMensual.reset();
+      editIdMensual = null;
+      modalMensual.classList.remove("open");
+      loadSeguimiento();
     } catch (err) {
       console.error(err);
-      alert("❌ Error de conexión con el servidor");
+      alert("❌ Error al guardar el seguimiento mensual");
     }
   });
 
-  // ================== GUARDAR DATOS FINALES ==================
-  formFinales.addEventListener("submit", async (e) => {
+  formFinales.addEventListener("submit", async e => {
     e.preventDefault();
+    if (!selectBecada.value) return alert("Selecciona una becada antes de guardar los datos finales");
 
-    if (!selectBecada.value) {
-      alert("Selecciona una becada antes de guardar los datos finales");
-      return;
-    }
+    const papeleriaCheckboxes = document.querySelectorAll("#papeleriaChecklist input[type=checkbox]");
+    const papeleriaCompletada = Array.from(papeleriaCheckboxes).every(cb => cb.checked);
 
     const data = {
       becadaId: selectBecada.value,
       anio: parseInt(document.getElementById("anio").value),
-      insumosRecibidos: document.getElementById("insumosRecibidos").value,
+      insumosRecibidos: insumosArray.join(", "),
       estadoCiclo: document.getElementById("estadoCiclo").value,
-      papeleriaCompleta:
-        document.getElementById("papeleriaCompleta").value === "true",
-      solicitudContinuidad:
-        document.getElementById("solicitudContinuidad").value === "true",
+      papeleriaCompleta: papeleriaCompletada,
+      solicitudContinuidad: document.getElementById("solicitudContinuidad").value === "true",
     };
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`${API_URL}/admin/seguimiento/finales`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+      const url = editIdFinales ? `${API_URL}/admin/seguimiento/finales/${editIdFinales}` : `${API_URL}/admin/seguimiento/finales`;
+      const method = editIdFinales ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(data),
       });
+      if (!res.ok) throw new Error("Error al guardar los datos finales");
 
-      const result = await res.json();
-
-      if (res.ok) {
-        alert("✅ Datos finales registrados correctamente");
-        formFinales.reset();
-        modalFinales.classList.remove("open");
-        loadSeguimiento();
-      } else {
-        alert("❌ " + (result.message || "No se pudo registrar"));
-      }
+      alert(editIdFinales ? "✏️ Datos finales editados" : "✅ Datos finales registrados");
+      formFinales.reset();
+      insumosList.innerHTML = "";
+      insumosArray = [];
+      papeleriaCheckboxes.forEach(cb => cb.checked = false);
+      editIdFinales = null;
+      modalFinales.classList.remove("open");
+      loadSeguimiento();
     } catch (err) {
       console.error(err);
-      alert("❌ Error de conexión con el servidor");
+      alert("❌ Error al guardar los datos finales");
     }
   });
 
